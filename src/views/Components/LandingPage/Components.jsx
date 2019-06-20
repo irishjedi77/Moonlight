@@ -16,6 +16,7 @@ import Parallax from "components/Parallax/Parallax.jsx";
 // sections for this page
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import SectionAbout from "./Sections/SectionAbout.jsx"
+import WorksSection from "./Sections/WorksSection.jsx"
 
 
 
@@ -54,6 +55,7 @@ class Components extends React.Component {
 
         <div className={classNames(classes.main, classes.mainRaised)}>
           <SectionAbout />
+          <WorksSection />
           <GridItem md={12} className={classes.textCenter}>
             <Link to={"/login-page"} className={classes.link}>
               <Button color="primary" size="lg" simple>
