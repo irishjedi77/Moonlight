@@ -147,8 +147,7 @@ class LoginPage extends React.Component {
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
                     <Link to="/signup-page">
-                      <Button simple color="primary" size="lg">
-                        Don't have a login? Sign up here. 
+                      <Button simple color="primary" size="lg">Don't have a login? Sign up here.
                       </Button>
                       </Link>
                     </CardFooter>
