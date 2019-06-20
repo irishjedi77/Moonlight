@@ -22,7 +22,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
-import image from "assets/img/office.jpg";
+import image from "assets/img/keyboard.jpg";
 
 class LoginPage extends React.Component {
   constructor(props) {
@@ -75,7 +75,6 @@ class LoginPage extends React.Component {
                           color="transparent"
                           onClick={e => e.preventDefault()}
                         >
-                          <i className={"fab fa-twitter"} />
                         </Button>
                         <Button
                           justIcon
@@ -84,7 +83,7 @@ class LoginPage extends React.Component {
                           color="transparent"
                           onClick={e => e.preventDefault()}
                         >
-                          <i className={"fab fa-facebook"} />
+                        <i class="far fa-address-card"></i>
                         </Button>
                         <Button
                           justIcon
@@ -93,11 +92,10 @@ class LoginPage extends React.Component {
                           color="transparent"
                           onClick={e => e.preventDefault()}
                         >
-                          <i className={"fab fa-google-plus-g"} />
                         </Button>
                       </div>
                     </CardHeader>
-                    <p className={classes.divider}>Or Be Classical</p>
+                    <p className={classes.divider}></p>
                     <CardBody>
                       <CustomInput
                         labelText="First Name..."
