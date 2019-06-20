@@ -15,8 +15,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 // sections for this page
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import SectionAbout from "./Sections/SectionAbout.jsx"
-import WorksSection from "./Sections/WorksSection.jsx"
+import ClientJobs from "./ClientJobs.jsx";
 
 
 
@@ -38,14 +37,14 @@ class Components extends React.Component {
           }}
           {...rest}
         />
-        <Parallax image={require("assets/img/office.jpg")}>
+        <Parallax image={require("assets/img/stretch.jpg")}>
           <div className={classes.container}>
             <GridContainer>
               <GridItem>
                 <div className={classes.brand}>
-                  <h1 className={classes.title}>MoonLight.</h1>
+                  <h1 className={classes.title}>Jobs by Client</h1>
                   <h3 className={classes.subtitle}>
-                    A source for freelance web design.
+                    Search available opportunities.
                   </h3>
                 </div>
               </GridItem>
@@ -54,15 +53,9 @@ class Components extends React.Component {
         </Parallax>
 
         <div className={classNames(classes.main, classes.mainRaised)}>
-          <SectionAbout />
-          <WorksSection />
-          <GridItem md={12} className={classes.textCenter}>
-            <Link to={"/login-page"} className={classes.link}>
-              <Button color="primary" size="lg" simple>
-               Login to Get Started
-              </Button>
-            </Link>
-          </GridItem>
+          <ClientJobs />
+         
+          
         
         </div>
         <Footer />
