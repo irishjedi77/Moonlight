@@ -23,7 +23,9 @@ app.get("*", (req, res) => {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/moonlight");
+let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/moonlight";
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
