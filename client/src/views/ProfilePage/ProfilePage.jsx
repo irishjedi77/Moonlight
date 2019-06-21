@@ -18,6 +18,7 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 
 import profile from "assets/img/faces/christian.jpg";
+import Modal from "../../components/Modal/jobModal.jsx"
 
 
 
@@ -79,24 +80,37 @@ class ProfilePage extends React.Component {
           <br></br>
           <br></br>
           <div className={classes.container}>
-              <GridContainer justify="center">
-                <GridItem xs={12} sm={12} md={6}>
-                  <div className={classes.profile}>
-                    <div className={classes.name}>
-                      <h3 className={classes.title}>Job Postings</h3>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={6}>
+                <div className={classes.profile}>
+                  <div className={classes.name}>
+                    <h3 className={classes.title}>Job Postings</h3>
 
-                    </div>
                   </div>
-                </GridItem>
-              </GridContainer>
-              <div className={classes.description}>
+                </div>
+              </GridItem>
+            </GridContainer>
+            <div className={classes.description}>
               Postings will go Here
               </div>
 
-            </div>
-        <br></br>
-        <br></br>
-          
+          </div>
+          <br></br>
+          <br></br>
+          <div className={classes.container}>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={6}>
+              <div className={classes.description}>
+              <Modal 
+                
+              />
+              <br></br>
+              </div>
+              </GridItem>
+            </GridContainer>
+
+          </div>
+
         </div>
         <Footer />
       </div>
