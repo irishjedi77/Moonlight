@@ -52,10 +52,13 @@ class LoginPage extends React.Component {
   onSubmit = event => {
     event.preventDefault();
 
+  
     API.userSignUp({
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2
+       
+        email: this.state.email,
+        password: this.state.password,
+        password2: this.state.password2
+      
     })
       .then(res => console.log(res))
       .catch(err => console.log(err));
