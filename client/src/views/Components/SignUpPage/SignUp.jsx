@@ -24,18 +24,19 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/keyboard.jpg";
 
 class LoginPage extends React.Component {
-
   state = {
     cardAnimation: "cardHidden",
     email: "",
     password: "",
     password2: "",
     errors: {}
-  }
+  };
+
 
   onChange = event => {
     const {name, value}=event.target
     this.setState({ [name]: value });
+  
   }
 
   onSubmit = e => {
@@ -92,7 +93,7 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
-                      <form>
+                      {/* <form> */}
                         <CustomInput
                           onChange={this.onChange}
                           value={this.state.email}
@@ -157,7 +158,7 @@ class LoginPage extends React.Component {
                           onClick={this.onSubmit}>
                           Submit
                         </Button>
-                      </form>
+                      {/* </form> */}
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
                       <Button simple color="primary" size="lg">
