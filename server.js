@@ -14,14 +14,14 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Define API routes here
+app.use(routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./public/index.html"));
+// });
 
-app.use(routes);
 
 let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/moonlight";
 

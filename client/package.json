@@ -3,6 +3,7 @@
   "version": "1.4.0",
   "description": "Material Kit React. Coded by Creative Tim",
   "private": true,
+  "proxy": "http://localhost:3001",
   "dependencies": {
     "@material-ui/core": "3.9.2",
     "@material-ui/icons": "3.0.2",
