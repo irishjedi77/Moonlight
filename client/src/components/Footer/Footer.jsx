@@ -55,7 +55,7 @@ function Footer({ ...props }) {
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/license"
+                href="https://github.com/irishjedi77/Moonlight"
                 className={classes.block}
                 target="_blank"
               >
