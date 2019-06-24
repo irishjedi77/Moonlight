@@ -16,6 +16,7 @@ import { Input, TextArea, FormBtn } from "../Form";
 import API from "../../utils/API"
 
 
+
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
 });
@@ -39,6 +40,7 @@ class Modal extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
+
         API.saveJob({
             jobTitle: this.state.jobTitle,
             jobDescription: this.state.jobDescription,
