@@ -135,10 +135,10 @@ class Dashboard extends React.Component {
                         />
                          <TextField
                             id="outlined-multiline-static"
-                            label="Multiline"
+                            label="Project Description"
                              multiline
                             rows="4"
-                            defaultValue="Describe your project here."
+                            placeholder="Describe your project here."
                             className={classes.textField}
                             margin="normal"
                             variant="outlined"
