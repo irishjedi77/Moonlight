@@ -18,7 +18,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
-import { Input, TextArea, FormBtn } from "../../../components/Form"
+
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
@@ -39,7 +39,7 @@ class LoginPage extends React.Component {
     this.setState({
       [name]: value
     });
-    console.log("hello")
+    console.log(event.target)
   };
 
   onSubmit = event => {
@@ -102,12 +102,14 @@ class LoginPage extends React.Component {
                           onChange={this.handleInputChange}
                           labelText="Email..."
                           id="email"
-                          type="email"
+                          name="email"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
                             type: "email",
+                            name: "email",
+                            onChange: this.handleInputChange,
                             endAdornment: (
                               <InputAdornment position="end">
                                 <Email className={classes.inputIconsColor} />
@@ -120,12 +122,14 @@ class LoginPage extends React.Component {
                           onChange={this.handleInputChange}
                           labelText="Password..."
                           id="password"
-                          type="password"
+                          name="password"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
                             type: "password",
+                            name: "password",
+                            onChange: this.handleInputChange,
                             endAdornment: (
                               <InputAdornment position="end">
                                 <Icon className={classes.inputIconsColor}>
@@ -140,12 +144,14 @@ class LoginPage extends React.Component {
                           onChange={this.handleInputChange}
                           labelText="Confirm Password..."
                           id="password2"
-                          type="password"
+                          name="password"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
                             type: "password",
+                            name: "password2",
+                            onChange: this.handleInputChange,
                             endAdornment: (
                               <InputAdornment position="end">
                                 <Icon className={classes.inputIconsColor}>
@@ -156,35 +162,11 @@ class LoginPage extends React.Component {
                           }}
                         />
                         <Button
-                          simple color="primary" size="lg" 
+                          simple color="primary" size="lg"
                           type="submit"
                           onClick={this.onSubmit}>
                           Submit
                         </Button>
-                        {/* <Input
-                          value={this.state.email}
-                          onChange={this.handleInputChange}
-                          name="jobTitle"
-                          placeholder="Email"
-                        />
-                        <Input
-                          value={this.state.password}
-                          onChange={this.handleInputChange}
-                          name="jobTitle"
-                          placeholder="Password"
-                        />
-                        <Input
-                          value={this.state.password2}
-                          onChange={this.handleInputChange}
-                          name="jobTitle"
-                          placeholder="Verify Password"
-                        />
-
-                        <FormBtn
-                          onClick={this.onSubmit}
-                        >
-                          Submit JOB
-                            </FormBtn> */}
                       </form>
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
