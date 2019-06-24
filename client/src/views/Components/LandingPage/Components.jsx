@@ -20,12 +20,14 @@ import WorksSection from "./Sections/WorksSection.jsx"
 
 
 
+
 import componentsStyle from "assets/jss/material-kit-react/views/components.jsx";
 
 class Components extends React.Component {
   render() {
     const { classes, ...rest } = this.props;
     return (
+      
       <div>
         <Header
           brand="Moonlight"
@@ -42,12 +44,14 @@ class Components extends React.Component {
           <div className={classes.container}>
             <GridContainer>
               <GridItem>
+                <Primary>
                 <div className={classes.brand}>
                   <h1 className={classes.title}>MoonLight.</h1>
                   <h3 className={classes.subtitle}>
                     A source for freelance web design.
                   </h3>
                 </div>
+                </Primary>
               </GridItem>
             </GridContainer>
           </div>
