@@ -1,5 +1,6 @@
 import React from "react";
 // @material-ui/core components
+import { Link } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
@@ -18,19 +19,18 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
-
-
+import TextField from '@material-ui/core/TextField';
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
-import image from "assets/img/keyboard.jpg";
-import API from "../../../utils/API"
 
-class LoginPage extends React.Component {
+import image from "assets/img/computer.jpg";
+
+class Dashboard extends React.Component {
+  
   state = {
-    cardAnimation: "cardHidden",
-    email: "",
-    password: "",
-    password2: "",
+    cardAnimaton: "cardHidden", 
+    email: "", 
+    password: "", 
     errors: {}
   }
 
@@ -42,35 +42,20 @@ class LoginPage extends React.Component {
     console.log(event.target)
   };
 
-
-  onChange = event => {
-    const {name, value}=event.target
-    this.setState({ [name]: value });
-  
-  }
-
   onSubmit = event => {
     event.preventDefault();
 
-  
-    API.userSignUp({
-       
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2
-      
-    })
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
-
+    const newUser = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    console.log(newUser);
   };
-
-
 
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
-      function () {
+      function() {
         this.setState({ cardAnimaton: "" });
       }.bind(this),
       700
@@ -101,26 +86,25 @@ class LoginPage extends React.Component {
                 <Card className={classes[this.state.cardAnimaton]}>
                   <form className={classes.form}>
                     <CardHeader color="primary" className={classes.cardHeader}>
-                      <h4>Sign Up</h4>
-                      <br></br>
-                      <br></br>
-
+                      <h4>Dashboard</h4>
+                      <div className={classes.socialLine}>
+                      </div>
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
-                      <form>
-                        <CustomInput
+                    <form noValidate onSubmit={this.onSubmit}>
+                    <CustomInput
                           value={this.state.email}
                           onChange={this.handleInputChange}
-                          labelText="Email..."
-                          id="email"
-                          name="email"
+                          labelText="Name/Organization"
+                          id="name"
+                          name="name"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
-                            type: "email",
-                            name: "email",
+                            type: "name",
+                            name: "name",
                             onChange: this.handleInputChange,
                             endAdornment: (
                               <InputAdornment position="end">
@@ -130,61 +114,45 @@ class LoginPage extends React.Component {
                           }}
                         />
                         <CustomInput
-                          value={this.state.password}
+                          value={this.state.email}
                           onChange={this.handleInputChange}
-                          labelText="Password..."
-                          id="password"
-                          name="password"
+                          labelText="Phone"
+                          id="phone"
+                          name="phone"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
-                            type: "password",
-                            name: "password",
+                            type: "phone",
+                            name: "phone",
                             onChange: this.handleInputChange,
                             endAdornment: (
                               <InputAdornment position="end">
-                                <Icon className={classes.inputIconsColor}>
-                                  lock_outline
-                                </Icon>
+                                <Email className={classes.inputIconsColor} />
                               </InputAdornment>
                             )
                           }}
                         />
-                        <CustomInput
-                          value={this.state.password2}
-                          onChange={this.handleInputChange}
-                          labelText="Confirm Password..."
-                          id="password2"
-                          name="password"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                          inputProps={{
-                            type: "password",
-                            name: "password2",
-                            onChange: this.handleInputChange,
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <Icon className={classes.inputIconsColor}>
-                                  lock_outline
-                                </Icon>
-                              </InputAdornment>
-                            )
-                          }}
-                        />
-                        <Button
-                          simple color="primary" size="lg"
-                          type="submit"
-                          onClick={this.onSubmit}>
-                          Submit
-                        </Button>
+                         <TextField
+                            id="outlined-multiline-static"
+                            label="Multiline"
+                             multiline
+                            rows="4"
+                            defaultValue="Describe your project here."
+                            className={classes.textField}
+                            margin="normal"
+                            variant="outlined"
+                             />
                       </form>
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg">
-                        Get started
-                      </Button>
+                    <Button
+                          simple color="primary" size="lg" 
+                          type="submit"                         
+                          onClick={this.onSubmit}
+                          >
+                          Submit
+                    </Button>
                     </CardFooter>
                   </form>
                 </Card>
@@ -197,5 +165,8 @@ class LoginPage extends React.Component {
     );
   }
 }
+    
+  
 
-export default withStyles(loginPageStyle)(LoginPage);
+
+export default withStyles (loginPageStyle)(Dashboard);
