@@ -7,6 +7,9 @@ export default {
     }, 
     getJobs: () => {
       return axios.get("/api/jobs")
+    }, 
+    userSignUp: (data) => {
+      return axios.post("/api/user/register", data)
     }
   };
   
