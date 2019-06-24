@@ -16,6 +16,7 @@ import { Input, TextArea, FormBtn } from "../Form";
 import API from "../../utils/API"
 
 
+
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
 });
@@ -39,15 +40,15 @@ class Modal extends React.Component {
 
     handleFormSubmit = event => {
         event.preventDefault();
-        if (this.state.title && this.state.author) {
-            API.saveJob({
-                jobTitle: this.state.jobTitle,
-                jobDescription: this.state.jobDescription,
-                jobCompensation: this.state.jobCompensation,
-            })
-                .then(res => console.log(res))
-                .catch(err => console.log(err));
-        }
+
+        API.saveJob({
+            jobTitle: this.state.jobTitle,
+            jobDescription: this.state.jobDescription,
+            jobCompensation: this.state.jobCompensation,
+        })
+            .then(res => console.log(res))
+            .catch(err => console.log(err));
+
     }
 
     handleClickOpen(modal) {
@@ -117,16 +118,21 @@ class Modal extends React.Component {
                                 name="jobCompensation"
                                 placeholder="Compensation details (Required)"
                             />
+                            <FormBtn
+                                onClick={this.handleFormSubmit}
+                            >
+                                Submit JOB
+                            </FormBtn>
                         </form>
                     </DialogContent>
                     <DialogActions
                         className={classes.modalFooter + " " + classes.modalFooterCenter}>
 
-                        <Button
+                        {/* <Button
                             onClick={this.handleFormSubmit}
                             color="successNoBackground">
                             Submit
-            </Button>
+            </Button> */}
                     </DialogActions>
                 </Dialog>
             </div>

@@ -13,6 +13,8 @@ import customInputStyle from "assets/jss/material-kit-react/components/customInp
 
 function CustomInput({ ...props }) {
   const {
+    //value, 
+    onChange,
     classes,
     formControlProps,
     labelText,
@@ -71,12 +73,16 @@ function CustomInput({ ...props }) {
         }}
         id={id}
         {...inputProps}
+        onChange={onChange}
+        //value={value}
       />
     </FormControl>
   );
 }
 
 CustomInput.propTypes = {
+  //value: PropTypes.string,
+  onChange: PropTypes.func, 
   classes: PropTypes.object.isRequired,
   labelText: PropTypes.node,
   labelProps: PropTypes.object,
