@@ -3,6 +3,7 @@ const jobsController = require("../../controllers/jobsController");
 
 // Matches with "/api/jobs"
 router.route("/")
-  .post(jobsController.create);
+  .post(jobsController.create)
+  .get(jobsController.findAll)
 
   module.exports = router;
