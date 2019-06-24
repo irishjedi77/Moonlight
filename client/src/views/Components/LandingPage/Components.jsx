@@ -44,14 +44,12 @@ class Components extends React.Component {
           <div className={classes.container}>
             <GridContainer>
               <GridItem>
-                <Primary>
                 <div className={classes.brand}>
                   <h1 className={classes.title}>MoonLight.</h1>
                   <h3 className={classes.subtitle}>
                     A source for freelance web design.
                   </h3>
                 </div>
-                </Primary>
               </GridItem>
             </GridContainer>
           </div>
