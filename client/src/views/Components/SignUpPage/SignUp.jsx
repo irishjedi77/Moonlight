@@ -18,6 +18,7 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
+import { Input, TextArea, FormBtn } from "../../../components/Form"
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
@@ -39,13 +40,13 @@ class LoginPage extends React.Component {
   
   }
 
-  onSubmit = e => {
-    e.preventDefault();
+  onSubmit = event => {
+    event.preventDefault();
 
     const newUser = {
       email: this.state.email,
       password: this.state.password,
-      paswword2: this.state.password2
+      password2: this.state.password2
     };
     console.log(newUser);
   };
@@ -95,8 +96,8 @@ class LoginPage extends React.Component {
                     <CardBody>
                       {/* <form> */}
                         <CustomInput
-                          onChange={this.onChange}
                           value={this.state.email}
+                          onChange={this.handleInputChange}
                           labelText="Email..."
                           id="email"
                           type="email"
@@ -113,8 +114,8 @@ class LoginPage extends React.Component {
                           }}
                         />
                         <CustomInput
-                          onChange={this.onChange}
                           value={this.state.password}
+                          onChange={this.handleInputChange}
                           labelText="Password..."
                           id="password"
                           type="password"
@@ -133,8 +134,8 @@ class LoginPage extends React.Component {
                           }}
                         />
                         <CustomInput
-                          onChange={this.onChange}
                           value={this.state.password2}
+                          onChange={this.handleInputChange}
                           labelText="Confirm Password..."
                           id="password2"
                           type="password"

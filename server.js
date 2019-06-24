@@ -36,6 +36,7 @@ require("./config/middleware/passport")(passport);
 app.use("/api/user", users);
 
 // Define API routes here
+app.use(routes);
 
 // Send every other request to the React app
 // Define any API routes before this runs
@@ -43,7 +44,6 @@ app.use("/api/user", users);
 //   res.sendFile(path.join(__dirname, "../Moonlight/client/public/index.html"));
 // });
 
-app.use(routes);
 
 let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/moonlight";
 
