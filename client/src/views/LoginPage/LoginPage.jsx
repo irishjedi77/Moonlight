@@ -33,20 +33,23 @@ class LoginPage extends React.Component {
     errors: {}
   }
 
-  onChange = e => {
-    this.setState({[e.target.id]: e.target.value})
+  handleInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    console.log(event.target)
+  };
 
-  }
+  onSubmit = event => {
+    event.preventDefault();
 
-  onSubmit = e => {
-    e.preventDefault()
-
-    const userData = {
-      email: this.state.email, 
+    const newUser = {
+      email: this.state.email,
       password: this.state.password
-    }
-    console.log(userData); 
-  }
+    };
+    console.log(newUser);
+  };
 
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -84,47 +87,26 @@ class LoginPage extends React.Component {
                     <CardHeader color="primary" className={classes.cardHeader}>
                       <h4>Login</h4>
                       <div className={classes.socialLine}>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                        <i class="far fa-address-card"></i>
-                        </Button>
-                        <Button
-                          justIcon
-                          href="#pablo"
-                          target="_blank"
-                          color="transparent"
-                          onClick={e => e.preventDefault()}
-                        >
-                        </Button>
+                        <br></br>
+                        <br></br>
                       </div>
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
                     <form noValidate onSubmit={this.onSubmit}>
-                        <CustomInput
-                          onChange={this.onChange}
-                          value={this.state.name}
+                    <CustomInput
+                          value={this.state.email}
+                          onChange={this.handleInputChange}
                           labelText="Email..."
                           id="email"
-                          type="email"
+                          name="email"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
                             type: "email",
+                            name: "email",
+                            onChange: this.handleInputChange,
                             endAdornment: (
                               <InputAdornment position="end">
                                 <Email className={classes.inputIconsColor} />
@@ -133,16 +115,18 @@ class LoginPage extends React.Component {
                           }}
                         />
                         <CustomInput
-                          onChange={this.onChange}
                           value={this.state.password}
+                          onChange={this.handleInputChange}
                           labelText="Password..."
                           id="password"
-                          type="password"
+                          name="password"
                           formControlProps={{
                             fullWidth: true
                           }}
                           inputProps={{
                             type: "password",
+                            name: "password",
+                            onChange: this.handleInputChange,
                             endAdornment: (
                               <InputAdornment position="end">
                                 <Icon className={classes.inputIconsColor}>
@@ -155,7 +139,9 @@ class LoginPage extends React.Component {
                         
                         <Button
                           simple color="primary" size="lg" 
-                          type="submit">
+                          type="submit"                         
+                          onClick={this.onSubmit}
+                          >
                           Log in!
                         </Button>
                       </form>
