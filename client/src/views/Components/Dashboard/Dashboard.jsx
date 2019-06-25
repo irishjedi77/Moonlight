@@ -1,6 +1,6 @@
 import React from "react";
 // @material-ui/core components
-import { Link } from "react-router-dom";
+import { Link, Redirect, Route } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
@@ -26,12 +26,26 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/computer.jpg";
 
 class Dashboard extends React.Component {
-  
+
   state = {
-    cardAnimaton: "cardHidden", 
-    email: "", 
-    password: "", 
-    errors: {}
+    cardAnimaton: "cardHidden",
+    name: "",
+    phone: "",
+    description: "",
+    redirect: false
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+    console.log("SetRedirect is firing")
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
+    console.log("renderRedirect is firing")
   }
 
   handleInputChange = event => {
@@ -39,23 +53,26 @@ class Dashboard extends React.Component {
     this.setState({
       [name]: value
     });
-    console.log(event.target)
+    //console.log(event.target)
   };
 
   onSubmit = event => {
     event.preventDefault();
 
     const newUser = {
-      email: this.state.email,
-      password: this.state.password
+      name: this.state.name,
+      phone: this.state.phone,
+      description: this.state.description
     };
     console.log(newUser);
+    this.setRedirect()
+
   };
 
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
-      function() {
+      function () {
         this.setState({ cardAnimaton: "" });
       }.bind(this),
       700
@@ -92,67 +109,78 @@ class Dashboard extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
-                    <form noValidate onSubmit={this.onSubmit}>
-                    <CustomInput
-                          value={this.state.email}
-                          onChange={this.handleInputChange}
-                          labelText="Name/Organization"
-                          id="name"
-                          name="name"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                          inputProps={{
-                            type: "name",
-                            name: "name",
-                            onChange: this.handleInputChange,
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <Email className={classes.inputIconsColor} />
-                              </InputAdornment>
-                            )
-                          }}
-                        />
-                        <CustomInput
-                          value={this.state.email}
-                          onChange={this.handleInputChange}
-                          labelText="Phone"
-                          id="phone"
-                          name="phone"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                          inputProps={{
-                            type: "phone",
-                            name: "phone",
-                            onChange: this.handleInputChange,
-                            endAdornment: (
-                              <InputAdornment position="end">
-                                <Email className={classes.inputIconsColor} />
-                              </InputAdornment>
-                            )
-                          }}
-                        />
-                         <TextField
-                            id="outlined-multiline-static"
-                            label="Project Description"
-                             multiline
-                            rows="4"
-                            placeholder="Describe your project here."
-                            className={classes.textField}
-                            margin="normal"
-                            variant="outlined"
-                             />
-                      </form>
+                      {/* <form noValidate onSubmit={this.onSubmit}> */}
+                      <CustomInput
+                        value={this.state.email}
+                        onChange={this.handleInputChange}
+                        labelText="Name/Organization"
+                        id="name"
+                        name="name"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "name",
+                          name: "name",
+                          onChange: this.handleInputChange,
+                          endadornment: (
+                            <InputAdornment position="end">
+                              <Email className={classes.inputIconsColor} />
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                      <CustomInput
+                        value={this.state.email}
+                        onChange={this.handleInputChange}
+                        labelText="Phone"
+                        id="phone"
+                        name="phone"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "phone",
+                          name: "phone",
+                          onChange: this.handleInputChange,
+                          endadornment: (
+                            <InputAdornment position="end">
+                              <Email className={classes.inputIconsColor} />
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                      <TextField
+                        value={this.state.description}
+                        onChange={this.handleInputChange}
+                        id="outlined-multiline-static"
+                        label="Project Description"
+                        multiline
+                        rows="4"
+                        placeholder="Describe your project here."
+                        className={classes.textField}
+                        margin="normal"
+                        variant="outlined"
+                        inputProps={{
+                          type: "description",
+                          name: "description",
+                          onChange: this.handleInputChange
+                        }}
+                      />
+                      {/* </form> */}
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                    <Button
-                          simple color="primary" size="lg" 
-                          type="submit"                         
+                      <div>
+                      {this.renderRedirect()}
+                        <Button
+                          simple color="primary" size="lg"
+                          className="submit"
+                          type="submit"
                           onClick={this.onSubmit}
-                          >
+                        >
                           Submit
                     </Button>
+                      </div>
                     </CardFooter>
                   </form>
                 </Card>
@@ -165,8 +193,8 @@ class Dashboard extends React.Component {
     );
   }
 }
-    
-  
 
 
-export default withStyles (loginPageStyle)(Dashboard);
+
+
+export default withStyles(loginPageStyle)(Dashboard);
