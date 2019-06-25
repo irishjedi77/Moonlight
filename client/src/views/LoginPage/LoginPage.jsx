@@ -23,6 +23,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/keyboard.jpg";
+import API from "../../utils/API"
 
 class LoginPage extends React.Component {
   
@@ -38,17 +39,28 @@ class LoginPage extends React.Component {
     this.setState({
       [name]: value
     });
-    console.log(event.target)
+    //console.log(event.target)
   };
 
   onSubmit = event => {
     event.preventDefault();
 
-    const newUser = {
+    // const newUser = {
+    //   email: this.state.email,
+    //   password: this.state.password
+    // };
+    // console.log(newUser);
+
+    API.userLogin({
+       
       email: this.state.email,
       password: this.state.password
-    };
-    console.log(newUser);
+    
+  })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+
+    
   };
 
   componentDidMount() {

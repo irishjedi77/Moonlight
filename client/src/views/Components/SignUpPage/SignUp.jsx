@@ -39,7 +39,7 @@ class LoginPage extends React.Component {
     this.setState({
       [name]: value
     });
-    console.log(event.target)
+    //console.log(event.target)
   };
 
 
