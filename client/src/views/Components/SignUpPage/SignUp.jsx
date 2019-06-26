@@ -197,11 +197,6 @@ class LoginPage extends React.Component {
                         </CardFooter>
                       </form>
                     </CardBody>
-                    <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg">
-                        Get started
-                      </Button>
-                    </CardFooter>
                   </form>
                 </Card>
               </GridItem>
