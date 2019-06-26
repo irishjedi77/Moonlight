@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, Redirect} from "react-router-dom";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -34,7 +35,21 @@ class LoginPage extends React.Component {
     password2: "",
     phone: "",
     description: "",
-    errors: {}
+    errors: {},
+    redirect: false
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+    console.log("SetRedirect is firing")
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/profile-page' />
+    }
+    console.log("renderRedirect is firing")
   }
 
   handleInputChange = event => {
@@ -59,6 +74,7 @@ class LoginPage extends React.Component {
     API.userSignUp(this.state)
       .then(res => console.log(res))
       .catch(err => console.log(err));
+      this.setRedirect();
 
   };
 
@@ -118,7 +134,7 @@ class LoginPage extends React.Component {
                             type: "email",
                             name: "email",
                             onChange: this.handleInputChange,
-                            endAdornment: (
+                            endadornment: (
                               <InputAdornment position="end">
                                 <Email className={classes.inputIconsColor} />
                               </InputAdornment>
@@ -138,7 +154,7 @@ class LoginPage extends React.Component {
                             type: "password",
                             name: "password",
                             onChange: this.handleInputChange,
-                            endAdornment: (
+                            endadornment: (
                               <InputAdornment position="end">
                                 <Icon className={classes.inputIconsColor}>
                                   lock_outline
@@ -160,7 +176,7 @@ class LoginPage extends React.Component {
                             type: "password",
                             name: "password2",
                             onChange: this.handleInputChange,
-                            endAdornment: (
+                            endadornment: (
                               <InputAdornment position="end">
                                 <Icon className={classes.inputIconsColor}>
                                   lock_outline
@@ -169,19 +185,18 @@ class LoginPage extends React.Component {
                             )
                           }}
                         />
+                        <CardFooter className={classes.cardFooter}>
+                        <div>{this.renderRedirect()}
                         <Button
                           simple color="primary" size="lg"
                           type="submit"
                           onClick={this.onSubmit}>
                           Submit
                         </Button>
+                        </div>
+                        </CardFooter>
                       </form>
                     </CardBody>
-                    <CardFooter className={classes.cardFooter}>
-                      <Button simple color="primary" size="lg">
-                        Get started
-                      </Button>
-                    </CardFooter>
                   </form>
                 </Card>
               </GridItem>
