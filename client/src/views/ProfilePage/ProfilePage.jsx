@@ -63,7 +63,14 @@ class ProfilePage extends React.Component {
                   </div>
                 </GridItem>
               </GridContainer>
+              <br></br>
+              <br></br>
+              <br></br>
               <div className={classes.description}>
+              <div className={classes.name}>
+                      <h4 className={classes.title}>Employer Description paragraph:</h4>
+
+                    </div>
                 <p>
                   Employer Description paragraph:
 
@@ -75,6 +82,23 @@ class ProfilePage extends React.Component {
             </div>
           </div>
           <br></br>
+          <br></br>
+          <div className={classes.container}>
+            <GridContainer justify="center">
+              <GridItem xs={12} sm={12} md={6}>
+              <div className={classes.description}>
+              <div className={classes.name}>
+                      <h4 className={classes.title}>Contact Info</h4>
+
+                    </div>
+              <br></br>
+              <p>Email</p>
+              <p>Phone Number</p> 
+              </div>
+              </GridItem>
+            </GridContainer>
+
+          </div>
           <br></br>
           <br></br>
           <br></br>
