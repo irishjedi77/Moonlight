@@ -1,6 +1,6 @@
 import React from "react";
 // @material-ui/core components
-import { Link } from "react-router-dom";
+import { Link, Redirect} from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
@@ -23,11 +23,7 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/keyboard.jpg";
-<<<<<<< HEAD
 import API from "../../utils/API";
-=======
-import API from "../../utils/API"
->>>>>>> 57ed1f61488e61b4ec72fa99410b6c6489ed9ebd
 
 class LoginPage extends React.Component {
 
@@ -35,7 +31,21 @@ class LoginPage extends React.Component {
     cardAnimaton: "cardHidden",
     email: "",
     password: "",
-    errors: {}
+    errors: {}, 
+    redirect: false
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+    console.log("SetRedirect is firing")
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/profile-page' />
+    }
+    console.log("renderRedirect is firing")
   }
 
   handleInputChange = event => {
@@ -43,16 +53,11 @@ class LoginPage extends React.Component {
     this.setState({
       [name]: value
     });
-<<<<<<< HEAD
-=======
-    //console.log(event.target)
->>>>>>> 57ed1f61488e61b4ec72fa99410b6c6489ed9ebd
   };
 
   onSubmit = event => {
     event.preventDefault();
 
-<<<<<<< HEAD
     const user = {
       email: this.state.email,
       password: this.state.password
@@ -61,26 +66,10 @@ class LoginPage extends React.Component {
     API.userLogin(user)
       .then(({ data }) => {
         window.localStorage.setItem("user-token", data.token);
+        this.setRedirect();
       })
       .catch(err => console.log(err));
-=======
-    // const newUser = {
-    //   email: this.state.email,
-    //   password: this.state.password
-    // };
-    // console.log(newUser);
 
-    API.userLogin({
-       
-      email: this.state.email,
-      password: this.state.password
-    
-  })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
-
-    
->>>>>>> 57ed1f61488e61b4ec72fa99410b6c6489ed9ebd
   };
 
   componentDidMount() {
@@ -125,7 +114,6 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
-                      <form noValidate onSubmit={this.onSubmit}>
                         <CustomInput
                           value={this.state.email}
                           onChange={this.handleInputChange}
@@ -139,7 +127,7 @@ class LoginPage extends React.Component {
                             type: "email",
                             name: "email",
                             onChange: this.handleInputChange,
-                            endAdornment: (
+                            endadornment: (
                               <InputAdornment position="end">
                                 <Email className={classes.inputIconsColor} />
                               </InputAdornment>
@@ -159,7 +147,7 @@ class LoginPage extends React.Component {
                             type: "password",
                             name: "password",
                             onChange: this.handleInputChange,
-                            endAdornment: (
+                            endadornment: (
                               <InputAdornment position="end">
                                 <Icon className={classes.inputIconsColor}>
                                   lock_outline
@@ -168,22 +156,19 @@ class LoginPage extends React.Component {
                             )
                           }}
                         />
-
+                        <CardFooter className={classes.cardFooter}>
+                        <div>
+                          {this.renderRedirect()}
                         <Button
                           simple color="primary" size="lg"
                           type="submit"
                           onClick={this.onSubmit}
                         >
-                          Log in!
+                          Login
                         </Button>
-                      </form>
+                        </div>
+                        </CardFooter>
                     </CardBody>
-                    <CardFooter className={classes.cardFooter}>
-                      <Link to="/signup-page">
-                        <Button simple color="primary" size="lg">Login
-                      </Button>
-                      </Link>
-                    </CardFooter>
                     <CardFooter className={classes.cardFooter}>
                       <Link to="/signup-page">
                         <Button simple color="primary" size="sm">Don't have a login? Sign up here.
