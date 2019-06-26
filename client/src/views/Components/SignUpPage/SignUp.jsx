@@ -43,13 +43,11 @@ class LoginPage extends React.Component {
     this.setState({
       redirect: true
     })
-    console.log("SetRedirect is firing")
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/profile-page' />
+      return <Redirect to='/dashboard' />
     }
-    console.log("renderRedirect is firing")
   }
 
   handleInputChange = event => {
