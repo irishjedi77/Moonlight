@@ -28,9 +28,12 @@ import API from "../../../utils/API"
 class LoginPage extends React.Component {
   state = {
     cardAnimation: "cardHidden",
+    name: "",
     email: "",
     password: "",
     password2: "",
+    phone: "",
+    description: "",
     errors: {}
   }
 
@@ -44,22 +47,16 @@ class LoginPage extends React.Component {
 
 
   onChange = event => {
-    const {name, value}=event.target
+    const { name, value } = event.target
     this.setState({ [name]: value });
-  
+
   }
 
   onSubmit = event => {
     event.preventDefault();
 
-  
-    API.userSignUp({
-       
-        email: this.state.email,
-        password: this.state.password,
-        password2: this.state.password2
-      
-    })
+
+    API.userSignUp(this.state)
       .then(res => console.log(res))
       .catch(err => console.log(err));
 
@@ -69,10 +66,9 @@ class LoginPage extends React.Component {
 
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
-    setTimeout(
-      function () {
-        this.setState({ cardAnimaton: "" });
-      }.bind(this),
+    setTimeout(() => {
+      this.setState({ cardAnimaton: "" });
+    },
       700
     );
   }
