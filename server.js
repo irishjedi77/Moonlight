@@ -6,7 +6,6 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const bodyParser = require("body-parser");
-const passport = require("passport");
 const users = require("./routes/api/user");
 
 
@@ -31,10 +30,11 @@ if (process.env.NODE_ENV === "production") {
 const db = require("./config/keys").mongoURI;
 
 // Passport middleware
-app.use(passport.initialize());
+// app.use(passport.initialize());
 // Passport config
-require("./config/middleware/passport")(passport);
+// require("./config/middleware/passport")(passport);
 // Routes
+require("./config/middleware/passport");
 app.use("/api/user", users);
 
 // Define API routes here

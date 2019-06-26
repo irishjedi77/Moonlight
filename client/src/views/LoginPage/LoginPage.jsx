@@ -23,13 +23,14 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/keyboard.jpg";
+import API from "../../utils/API";
 
 class LoginPage extends React.Component {
-  
+
   state = {
-    cardAnimaton: "cardHidden", 
-    email: "", 
-    password: "", 
+    cardAnimaton: "cardHidden",
+    email: "",
+    password: "",
     errors: {}
   }
 
@@ -38,23 +39,27 @@ class LoginPage extends React.Component {
     this.setState({
       [name]: value
     });
-    console.log(event.target)
   };
 
   onSubmit = event => {
     event.preventDefault();
 
-    const newUser = {
+    const user = {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(newUser);
+    console.log(user);
+    API.userLogin(user)
+      .then(({ data }) => {
+        window.localStorage.setItem("user-token", data.token);
+      })
+      .catch(err => console.log(err));
   };
 
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
     setTimeout(
-      function() {
+      function () {
         this.setState({ cardAnimaton: "" });
       }.bind(this),
       700
@@ -93,8 +98,8 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
-                    <form noValidate onSubmit={this.onSubmit}>
-                    <CustomInput
+                      <form noValidate onSubmit={this.onSubmit}>
+                        <CustomInput
                           value={this.state.email}
                           onChange={this.handleInputChange}
                           labelText="Email..."
@@ -136,25 +141,25 @@ class LoginPage extends React.Component {
                             )
                           }}
                         />
-                        
+
                         <Button
-                          simple color="primary" size="lg" 
-                          type="submit"                         
+                          simple color="primary" size="lg"
+                          type="submit"
                           onClick={this.onSubmit}
-                          >
+                        >
                           Log in!
                         </Button>
                       </form>
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                    <Link to="/signup-page">
-                      <Button simple color="primary" size="lg">Login
+                      <Link to="/signup-page">
+                        <Button simple color="primary" size="lg">Login
                       </Button>
                       </Link>
                     </CardFooter>
                     <CardFooter className={classes.cardFooter}>
-                    <Link to="/signup-page">
-                      <Button simple color="primary" size="sm">Don't have a login? Sign up here.
+                      <Link to="/signup-page">
+                        <Button simple color="primary" size="sm">Don't have a login? Sign up here.
                       </Button>
                       </Link>
                     </CardFooter>

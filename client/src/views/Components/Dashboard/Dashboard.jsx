@@ -23,7 +23,9 @@ import TextField from '@material-ui/core/TextField';
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 
+
 import image from "assets/img/computer.jpg";
+import API from "../../../utils/API"
 
 class Dashboard extends React.Component {
 
@@ -59,13 +61,23 @@ class Dashboard extends React.Component {
   onSubmit = event => {
     event.preventDefault();
 
-    const newUser = {
+    // const newUser = {
+    //   name: this.state.name,
+    //   phone: this.state.phone,
+    //   description: this.state.description
+    // };
+    // console.log(newUser);
+    this.setRedirect()
+
+    API.userUpdate({
+       
       name: this.state.name,
       phone: this.state.phone,
       description: this.state.description
-    };
-    console.log(newUser);
-    this.setRedirect()
+    
+  })
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
 
   };
 
