@@ -20,8 +20,15 @@ import Button from "components/CustomButtons/Button.jsx";
 
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
+
 function HeaderLinks({ ...props }) {
   const { classes } = props;
+
+  const logOut = event => {
+    event.preventDefault()
+    window.localStorage.removeItem("user-token");
+  }
+
   return (
     <List className={classes.list}>
 
@@ -66,6 +73,18 @@ function HeaderLinks({ ...props }) {
             className={classes.navLink}
           >
             <PowerSettingsNew className={classes.icons} />Login
+        </Button>
+        </Link>
+      </ListItem>
+      <ListItem className={classes.listItem}>
+        <Link to="/">
+          <Button
+            onClick={logOut}
+            color="transparent"
+            target="_blank"
+            className={classes.navLink}
+          >
+            <PowerSettingsNew className={classes.icons} />Logout
         </Button>
         </Link>
       </ListItem>

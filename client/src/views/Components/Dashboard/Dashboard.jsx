@@ -41,13 +41,11 @@ class Dashboard extends React.Component {
     this.setState({
       redirect: true
     })
-    console.log("SetRedirect is firing")
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/' />
+      return <Redirect to='/profile-page' />
     }
-    console.log("renderRedirect is firing")
   }
 
   handleInputChange = event => {
