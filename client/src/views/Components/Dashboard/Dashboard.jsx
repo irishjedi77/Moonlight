@@ -112,7 +112,7 @@ class Dashboard extends React.Component {
               <GridItem xs={12} sm={12} md={4}>
                 <Card className={classes[this.state.cardAnimaton]}>
                   <form className={classes.form}>
-                    <CardHeader color="primary" className={classes.cardHeader}>
+                    <CardHeader color="info" className={classes.cardHeader}>
                       <h4>Dashboard</h4>
                       <div className={classes.socialLine}>
                       </div>
@@ -167,10 +167,14 @@ class Dashboard extends React.Component {
                         label="Project Description"
                         multiline
                         rows="4"
+                        color= "info"
                         placeholder="Describe your project here."
                         className={classes.textField}
                         margin="normal"
                         variant="outlined"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
                         inputProps={{
                           type: "description",
                           name: "description",
@@ -183,7 +187,7 @@ class Dashboard extends React.Component {
                       <div>
                       {this.renderRedirect()}
                         <Button
-                          simple color="primary" size="lg"
+                          simple color="info" size="lg"
                           className="submit"
                           type="submit"
                           onClick={this.onSubmit}

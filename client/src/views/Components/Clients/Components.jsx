@@ -75,6 +75,9 @@ class Components extends React.Component {
           </GridItem>
           </GridContainer>
         </div>
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }
