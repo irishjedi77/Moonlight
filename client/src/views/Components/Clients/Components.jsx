@@ -15,13 +15,30 @@ import Button from "components/CustomButtons/Button.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 // sections for this page
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import ClientJobs from "./ClientJobs.jsx";
+import ClientJobs from "../Clients/ClientJobs.jsx";
 
-
+//API
+import API from "../../../utils/API"
 
 import componentsStyle from "assets/jss/material-kit-react/views/components.jsx";
 
 class Components extends React.Component {
+  state = {
+    jobs: []
+
+  }
+
+  componentDidMount() {
+    this.loadJobs();
+  }
+
+  loadJobs = () => {
+    API.getJobs()
+      .then(res =>
+        this.setState({ jobs: res.data })
+      )
+      .catch(err => console.log(err));
+  };
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -51,17 +68,21 @@ class Components extends React.Component {
             </GridContainer>
           </div>
         </Parallax>
-
         <div className={classNames(classes.main, classes.mainRaised)}>
+          <GridContainer>
+          <GridItem>
           <ClientJobs />
-         
-          
-        
+          </GridItem>
+          </GridContainer>
         </div>
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }
 }
+
+
 
 export default withStyles(componentsStyle)(Components);

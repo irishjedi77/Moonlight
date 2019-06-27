@@ -21,6 +21,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
 
+
 function HeaderLinks({ ...props }) {
   const { classes } = props;
 
@@ -28,28 +29,16 @@ function HeaderLinks({ ...props }) {
     event.preventDefault()
     window.localStorage.removeItem("user-token");
   }
-
   return (
     <List className={classes.list}>
 
       <ListItem className={classes.listItem}>
-        <Link to ="/job-postings">
+        <Link to ="/client-jobs">
           <Button
             color="transparent"
             className={classes.navLink}
           >
             <ViewList className={classes.icons} />Project Postings
-        </Button>
-        </Link>
-      </ListItem>
-
-      <ListItem className={classes.listItem}>
-      <Link to="/client-jobs">
-        <Button
-          color="transparent"
-          className={classes.navLink}
-        >
-          <ViewList className={classes.icons} />Clients
         </Button>
         </Link>
       </ListItem>
@@ -88,6 +77,8 @@ function HeaderLinks({ ...props }) {
         </Button>
         </Link>
       </ListItem>
+      <div>
+    </div>
 
     </List>
   );
