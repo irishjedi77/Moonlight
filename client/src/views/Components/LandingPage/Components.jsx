@@ -47,7 +47,7 @@ class Components extends React.Component {
                 <div className={classes.brand}>
                   <h1 className={classes.title}>MoonLight.</h1>
                   <h3 className={classes.subtitle}>
-                    A source for freelance web design.
+                    A source for freelance web development.
                   </h3>
                 </div>
               </GridItem>
@@ -60,7 +60,7 @@ class Components extends React.Component {
           <WorksSection />
           <GridItem md={12} className={classes.textCenter}>
             <Link to={"/login-page"} className={classes.link}>
-              <Button color="primary" size="lg" simple>
+              <Button color="info" size="lg" simple>
                Login to Get Started
               </Button>
             </Link>

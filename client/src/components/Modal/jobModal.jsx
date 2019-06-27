@@ -24,13 +24,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 class Modal extends React.Component {
-    state = {
-        modal: false,
+    constructor(props){
+        super(props);
+        this.state = {
         jobTitle: "",
         jobDescription: "",
-        jobCompensation: ""
+        jobCompensation: "",
+        modal: false,
 
-    }
+    };
+}
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -66,7 +69,7 @@ class Modal extends React.Component {
         return (
             <div>
                 <Button
-                    color="rose"
+                    color="info"
                     round
                     onClick={() => this.handleClickOpen("modal")}>
                     Create a Project!
@@ -94,7 +97,7 @@ class Modal extends React.Component {
                             onClick={() => this.handleClose("modal")}>
                             <Close className={classes.modalClose} />
                         </IconButton>
-                        <h4 className={classes.modalTitle}>Create a project!</h4>
+                        <h3 className={classes.modalTitle}>Create a project</h3>
                     </DialogTitle>
                     <DialogContent
                         id="modal-slide-description"
@@ -118,11 +121,12 @@ class Modal extends React.Component {
                                 name="jobCompensation"
                                 placeholder="Compensation details (Required)"
                             />
-                            <FormBtn
+                            <Button
+                                color="info"
                                 onClick={this.handleFormSubmit}
                             >
-                                Submit JOB
-                            </FormBtn>
+                                Submit Job
+                            </Button>
                         </form>
                     </DialogContent>
                     <DialogActions
