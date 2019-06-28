@@ -28,7 +28,7 @@ function Footer({ ...props }) {
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/"
+                href="/"
                 className={classes.block}
                 target="_blank"
               >
@@ -37,7 +37,7 @@ function Footer({ ...props }) {
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="https://www.creative-tim.com/presentation"
+                href="/"
                 className={classes.block}
                 target="_blank"
               >
@@ -46,7 +46,7 @@ function Footer({ ...props }) {
             </ListItem>
             <ListItem className={classes.inlineBlock}>
               <a
-                href="http://blog.creative-tim.com/"
+                href="/client-jobs"
                 className={classes.block}
                 target="_blank"
               >
@@ -70,7 +70,7 @@ function Footer({ ...props }) {
           <a className={aClasses}
             target="_blank"
           >
-            Moonlight
+            Christian Mader & Erin Lyden
           </a>{" "}
         </div>
       </div>

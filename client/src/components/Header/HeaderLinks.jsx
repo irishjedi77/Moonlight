@@ -50,7 +50,7 @@ class HeaderLinks extends React.Component {
       <List className={classes.list}>
 
         <ListItem className={classes.listItem}>
-          <Link to="/job-postings">
+          <Link to="/client-jobs">
             <Button
 
               color="transparent"
@@ -61,16 +61,6 @@ class HeaderLinks extends React.Component {
           </Link>
         </ListItem>
 
-        <ListItem className={classes.listItem}>
-          <Link to="/client-jobs">
-            <Button
-              color="transparent"
-              className={classes.navLink}
-            >
-              <ViewList className={classes.icons} />Clients
-        </Button>
-          </Link>
-        </ListItem>
         {this.context.loggedIn && <ListItem className={classes.listItem}>
           <Link to={"/profile-page/" + this.context.loggedInUser}>
             <Button

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import { createBrowserHistory } from "history";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -9,10 +9,9 @@ import Components from "./views/Components/LandingPage/Components.jsx";
 import ProfilePage from "views/ProfilePage/ProfilePage.jsx";
 import LoginPage from "views/LoginPage/LoginPage.jsx";
 import SignUpPage from "./views/Components/SignUpPage/SignUp.jsx";
-import JobPostings from "./views/Components/JobPostings/Components.jsx"
 import Dashboard from "./views/Components/Dashboard/Dashboard.jsx"
 import ClientComponents from "./views/Components/Clients/Components.jsx";
-import {UserProvider} from "./components/Context/loginContext.js"; 
+import { UserProvider } from "./components/Context/loginContext.js";
 
 var hist = createBrowserHistory();
 
@@ -22,7 +21,6 @@ function App() {
     <UserProvider>
       <Router history={hist}>
         <Switch>
-          <Route path="/job-postings" component={JobPostings} />
           <Route path="/client-jobs" component={ClientComponents} />
           <Route path="/profile-page/:name" component={ProfilePage} />
           <Route path="/login-page" component={LoginPage} />
@@ -32,7 +30,6 @@ function App() {
         </Switch>
       </Router>
     </UserProvider>
-
 
   )
 

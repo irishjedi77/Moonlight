@@ -110,7 +110,7 @@ class LoginPage extends React.Component {
               <GridItem xs={12} sm={12} md={4}>
                 <Card className={classes[this.state.cardAnimaton]}>
                   <form className={classes.form}>
-                    <CardHeader color="primary" className={classes.cardHeader}>
+                    <CardHeader color="info" className={classes.cardHeader}>
                       <h4>Sign Up</h4>
                       <br></br>
                       <br></br>
@@ -186,7 +186,7 @@ class LoginPage extends React.Component {
                         <CardFooter className={classes.cardFooter}>
                         <div>{this.renderRedirect()}
                         <Button
-                          simple color="primary" size="lg"
+                          simple color="info" size="lg"
                           type="submit"
                           onClick={this.onSubmit}>
                           Submit

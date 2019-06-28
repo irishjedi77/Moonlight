@@ -6,7 +6,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
@@ -20,11 +19,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import TextField from '@material-ui/core/TextField';
+//styles
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
-
-
-
 import image from "assets/img/computer.jpg";
+//API
 import API from "../../../utils/API"
 
 class Dashboard extends React.Component {
@@ -112,7 +110,7 @@ class Dashboard extends React.Component {
               <GridItem xs={12} sm={12} md={4}>
                 <Card className={classes[this.state.cardAnimaton]}>
                   <form className={classes.form}>
-                    <CardHeader color="primary" className={classes.cardHeader}>
+                    <CardHeader color="info" className={classes.cardHeader}>
                       <h4>Dashboard</h4>
                       <div className={classes.socialLine}>
                       </div>
@@ -171,10 +169,13 @@ class Dashboard extends React.Component {
                         className={classes.textField}
                         margin="normal"
                         variant="outlined"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
                         inputProps={{
                           type: "description",
                           name: "description",
-                          onChange: this.handleInputChange
+                          onChange: this.handleInputChange,
                         }}
                       />
                       {/* </form> */}
@@ -183,7 +184,7 @@ class Dashboard extends React.Component {
                       <div>
                       {this.renderRedirect()}
                         <Button
-                          simple color="primary" size="lg"
+                          simple color="info" size="lg"
                           className="submit"
                           type="submit"
                           onClick={this.onSubmit}
@@ -203,8 +204,5 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-
-
 
 export default withStyles(loginPageStyle)(Dashboard);

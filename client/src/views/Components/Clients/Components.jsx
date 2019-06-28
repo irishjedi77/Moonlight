@@ -15,13 +15,30 @@ import Button from "components/CustomButtons/Button.jsx";
 import Parallax from "components/Parallax/Parallax.jsx";
 // sections for this page
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
-import ClientJobs from "./ClientJobs.jsx";
+import ClientJobs from "../Clients/ClientJobs.jsx";
 
-
+//API
+import API from "../../../utils/API"
 
 import componentsStyle from "assets/jss/material-kit-react/views/components.jsx";
 
 class Components extends React.Component {
+  state = {
+    jobs: []
+
+  }
+
+  componentDidMount() {
+    this.loadJobs();
+  }
+
+  loadJobs = () => {
+    API.getJobs()
+      .then(res =>
+        this.setState({ jobs: res.data })
+      )
+      .catch(err => console.log(err));
+  };
   render() {
     const { classes, ...rest } = this.props;
     return (
@@ -37,12 +54,14 @@ class Components extends React.Component {
           }}
           {...rest}
         />
-        <Parallax image={require("assets/img/stretch.jpg")}>
+        <Parallax image={require("assets/img/stretch2.jpeg")}>
           <div className={classes.container}>
             <GridContainer>
               <GridItem>
                 <div className={classes.brand}>
                   <h1 className={classes.title}>Jobs by Client</h1>
+                  <br></br>
+                  <br></br>
                   <h3 className={classes.subtitle}>
                     Search available opportunities.
                   </h3>
@@ -51,17 +70,21 @@ class Components extends React.Component {
             </GridContainer>
           </div>
         </Parallax>
-
         <div className={classNames(classes.main, classes.mainRaised)}>
+          <GridContainer>
+          <GridItem>
           <ClientJobs />
-         
-          
-        
+          </GridItem>
+          </GridContainer>
         </div>
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </div>
     );
   }
 }
+
+
 
 export default withStyles(componentsStyle)(Components);
