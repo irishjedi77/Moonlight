@@ -20,12 +20,37 @@ import Parallax from "components/Parallax/Parallax.jsx";
 import profile from "assets/img/faces/christian.jpg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
 import Modal from "../../components/Modal/jobModal.jsx"
+import API from "../../utils/API.js"
 
 
 
 import profilePageStyle from "assets/jss/material-kit-react/views/profilePage.jsx";
 
+import { LoginContext } from "../../components/Context/loginContext.js";
+
 class ProfilePage extends React.Component {
+
+  state = {
+    profile: {}
+
+  }
+
+  componentDidMount() {
+    this.loadProfile();
+   
+  }
+
+  loadProfile = () => {
+    console.log("params: ", this.props.match.params.name)
+    API.getUserInfo(this.props.match.params.name)
+      .then(res =>
+        this.setState({ profile: res.data[0]}),
+      )
+      .catch(err => console.log(err));
+  };
+
+
+
   render() {
     const { classes, ...rest } = this.props;
     const imageClasses = classNames(
@@ -33,9 +58,11 @@ class ProfilePage extends React.Component {
       classes.imgRoundedCircle,
       classes.imgFluid
     );
+    console.log("user info:", this.state.profile)
     const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
       <div>
+        
         <Header
           color="transparent"
           brand="Moonlight"
@@ -58,7 +85,7 @@ class ProfilePage extends React.Component {
                       <img src={profile} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
-                      <h3 className={classes.title}>Employee Title</h3>
+                      <h3 className={classes.title}>{this.state.profile.name}</h3>
 
                     </div>
                   </div>
@@ -72,12 +99,7 @@ class ProfilePage extends React.Component {
                       <h4 className={classes.title}>Employer Description paragraph:</h4>
 
                     </div>
-                <p>
-                  Employer Description paragraph:
-
-
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
+                <p>{this.state.profile.description}</p>
               </div>
 
             </div>
@@ -92,9 +114,12 @@ class ProfilePage extends React.Component {
                       <h4 className={classes.title}>Contact Info</h4>
 
                     </div>
-              <br></br>
-              <p>Email</p>
-              <p>Phone Number</p> 
+              
+              <h6 className={classes.title}>Email:</h6>
+              <p>{this.state.profile.email}</p>
+              <h6 className={classes.title}>Phone:</h6>
+              <p>{this.state.profile.phone}</p>
+             
               </div>
               </GridItem>
             </GridContainer>
@@ -143,4 +168,5 @@ class ProfilePage extends React.Component {
   }
 }
 
+HeaderLinks.contextType = LoginContext;
 export default withStyles(profilePageStyle)(ProfilePage);

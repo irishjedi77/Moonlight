@@ -31,10 +31,13 @@ class ProductSection extends React.Component {
   loadJobs = () => {
     API.getJobs()
       .then(res =>
-        this.setState({ jobs: res.data })
+        this.setState({ jobs: res.data }),
+        
+       
       )
       .catch(err => console.log(err));
   };
+
   render() {
     const { classes } = this.props;
     return (
