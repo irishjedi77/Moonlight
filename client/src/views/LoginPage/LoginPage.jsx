@@ -185,7 +185,7 @@ class LoginPage extends React.Component {
                               <div>
                                 {this.renderRedirect()}
                                 <Button
-                                  simple color="primary" size="lg"
+                                  simple color="info" size="lg"
                                   type="submit"
                                   onClick={e => this.onSubmit(e, data)}
                                 >

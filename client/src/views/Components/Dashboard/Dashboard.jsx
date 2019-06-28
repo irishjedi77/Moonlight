@@ -162,10 +162,10 @@ class Dashboard extends React.Component {
                         value={this.state.description}
                         onChange={this.handleInputChange}
                         id="outlined-multiline-static"
-                        label="Project Description"
+                        label="Organization Description"
                         multiline
                         rows="4"
-                        placeholder="Describe your project here."
+                        placeholder="Describe your organization here."
                         className={classes.textField}
                         margin="normal"
                         variant="outlined"
