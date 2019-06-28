@@ -60,7 +60,7 @@ const headerStyle = {
     color: "inherit",
     padding: "8px 16px",
     "&:hover,&:focus": {
-      color: "inherit",
+      color: "#4caf50",
       background: "transparent"
     }
   },
