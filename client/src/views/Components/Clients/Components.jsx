@@ -54,12 +54,14 @@ class Components extends React.Component {
           }}
           {...rest}
         />
-        <Parallax image={require("assets/img/stretch.jpg")}>
+        <Parallax image={require("assets/img/stretch2.jpeg")}>
           <div className={classes.container}>
             <GridContainer>
               <GridItem>
                 <div className={classes.brand}>
                   <h1 className={classes.title}>Jobs by Client</h1>
+                  <br></br>
+                  <br></br>
                   <h3 className={classes.subtitle}>
                     Search available opportunities.
                   </h3>

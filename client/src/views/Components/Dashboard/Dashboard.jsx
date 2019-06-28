@@ -6,7 +6,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
@@ -20,11 +19,10 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import TextField from '@material-ui/core/TextField';
+//styles
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
-
-
-
 import image from "assets/img/computer.jpg";
+//API
 import API from "../../../utils/API"
 
 class Dashboard extends React.Component {
@@ -167,7 +165,6 @@ class Dashboard extends React.Component {
                         label="Project Description"
                         multiline
                         rows="4"
-                        color= "info"
                         placeholder="Describe your project here."
                         className={classes.textField}
                         margin="normal"
@@ -178,7 +175,7 @@ class Dashboard extends React.Component {
                         inputProps={{
                           type: "description",
                           name: "description",
-                          onChange: this.handleInputChange
+                          onChange: this.handleInputChange,
                         }}
                       />
                       {/* </form> */}
@@ -207,8 +204,5 @@ class Dashboard extends React.Component {
     );
   }
 }
-
-
-
 
 export default withStyles(loginPageStyle)(Dashboard);
