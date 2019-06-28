@@ -14,7 +14,7 @@ import Button from "components/CustomButtons/Button.jsx";
 import modalStyle from "../../assets/jss/material-kit-react/modalStyle.jsx";
 import { Input, TextArea, FormBtn } from "../Form";
 import API from "../../utils/API"
-
+import { LoginContext } from "../Context/loginContext.js";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -45,6 +45,7 @@ class Modal extends React.Component {
             jobTitle: this.state.jobTitle,
             jobDescription: this.state.jobDescription,
             jobCompensation: this.state.jobCompensation,
+            token: this.context.authToken
         })
             .then(res => console.log(res))
             .catch(err => console.log(err));
@@ -140,4 +141,5 @@ class Modal extends React.Component {
     }
 }
 
+Modal.contextType = LoginContext;
 export default withStyles(modalStyle)(Modal);

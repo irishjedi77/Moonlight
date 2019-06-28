@@ -1,6 +1,6 @@
 import React from "react";
 // @material-ui/core components
-import { Link, Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
@@ -24,28 +24,32 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/keyboard.jpg";
 import API from "../../utils/API";
+import { LoginContext } from "../../components/Context/loginContext.js";
 
 class LoginPage extends React.Component {
+
 
   state = {
     cardAnimaton: "cardHidden",
     email: "",
     password: "",
-    errors: {}, 
-    redirect: false
+    errors: {},
+    redirect: false,
+    name: "", 
+    token: ""
   }
 
   setRedirect = () => {
     this.setState({
       redirect: true
     })
-    console.log("SetRedirect is firing")
+    //console.log("SetRedirect is firing")
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/profile-page' />
+      return <Redirect to={'/profile-page/' + this.context.loggedInUser} />
     }
-    console.log("renderRedirect is firing")
+    //console.log("renderRedirect is firing")
   }
 
   handleInputChange = event => {
@@ -55,22 +59,36 @@ class LoginPage extends React.Component {
     });
   };
 
-  onSubmit = event => {
+  onSubmit = (event, context) => {
     event.preventDefault();
 
     const user = {
       email: this.state.email,
       password: this.state.password
     };
-    console.log(user);
+    //console.log(user);
     API.userLogin(user)
       .then(({ data }) => {
-        window.localStorage.setItem("user-token", data.token);
-        this.setRedirect();
+        //window.localStorage.setItem("user-token", data.token);
+        this.setState({
+           name: data.user.name, 
+           token: data.token
+         })
+        console.log(data)
+        
+      })
+      .then(() =>{
+        this.context.changeLoggedInUser(this.state.name)
+        this.context.changeToken(this.state.token)
+        this.context.changeLoggedIn()
+        this.setRedirect()
+        
       })
       .catch(err => console.log(err));
 
   };
+
+
 
   componentDidMount() {
     // we add a hidden class to the card and after 700 ms we delete it and the transition appears
@@ -81,7 +99,11 @@ class LoginPage extends React.Component {
       700
     );
   }
+
+  //static contextType = LoginContext
   render() {
+    //const {loggedInUser, changeLoggedInUser} = this.context
+
     const { classes, ...rest } = this.props;
     return (
       <div>
@@ -114,60 +136,67 @@ class LoginPage extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
-                        <CustomInput
-                          value={this.state.email}
-                          onChange={this.handleInputChange}
-                          labelText="Email..."
-                          id="email"
-                          name="email"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                          inputProps={{
-                            type: "email",
-                            name: "email",
-                            onChange: this.handleInputChange,
-                            endadornment: (
-                              <InputAdornment position="end">
-                                <Email className={classes.inputIconsColor} />
-                              </InputAdornment>
-                            )
-                          }}
-                        />
-                        <CustomInput
-                          value={this.state.password}
-                          onChange={this.handleInputChange}
-                          labelText="Password..."
-                          id="password"
-                          name="password"
-                          formControlProps={{
-                            fullWidth: true
-                          }}
-                          inputProps={{
-                            type: "password",
-                            name: "password",
-                            onChange: this.handleInputChange,
-                            endadornment: (
-                              <InputAdornment position="end">
-                                <Icon className={classes.inputIconsColor}>
-                                  lock_outline
+                      <CustomInput
+                        value={this.state.email}
+                        onChange={this.handleInputChange}
+                        labelText="Email..."
+                        id="email"
+                        name="email"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "email",
+                          name: "email",
+                          onChange: this.handleInputChange,
+                          endadornment: (
+                            <InputAdornment position="end">
+                              <Email className={classes.inputIconsColor} />
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                      <CustomInput
+                        value={this.state.password}
+                        onChange={this.handleInputChange}
+                        labelText="Password..."
+                        id="password"
+                        name="password"
+                        formControlProps={{
+                          fullWidth: true
+                        }}
+                        inputProps={{
+                          type: "password",
+                          name: "password",
+                          onChange: this.handleInputChange,
+                          endadornment: (
+                            <InputAdornment position="end">
+                              <Icon className={classes.inputIconsColor}>
+                                lock_outline
                                 </Icon>
-                              </InputAdornment>
+                            </InputAdornment>
+                          )
+                        }}
+                      />
+                      <CardFooter className={classes.cardFooter}>
+                        <LoginContext.Consumer>
+                          {data => {
+                            return (
+                              <div>
+                                {this.renderRedirect()}
+                                <Button
+                                  simple color="primary" size="lg"
+                                  type="submit"
+                                  onClick={e => this.onSubmit(e, data)}
+                                >
+                                  Login
+                            </Button>
+                              </div>
                             )
+
                           }}
-                        />
-                        <CardFooter className={classes.cardFooter}>
-                        <div>
-                          {this.renderRedirect()}
-                        <Button
-                          simple color="primary" size="lg"
-                          type="submit"
-                          onClick={this.onSubmit}
-                        >
-                          Login
-                        </Button>
-                        </div>
-                        </CardFooter>
+                        </LoginContext.Consumer>
+                      </CardFooter>
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
                       <Link to="/signup-page">
@@ -186,5 +215,7 @@ class LoginPage extends React.Component {
     );
   }
 }
+
+LoginPage.contextType = LoginContext
 
 export default withStyles(loginPageStyle)(LoginPage);

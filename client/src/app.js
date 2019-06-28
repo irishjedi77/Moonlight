@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { createBrowserHistory } from "history";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -12,23 +12,27 @@ import SignUpPage from "./views/Components/SignUpPage/SignUp.jsx";
 import JobPostings from "./views/Components/JobPostings/Components.jsx"
 import Dashboard from "./views/Components/Dashboard/Dashboard.jsx"
 import ClientComponents from "./views/Components/Clients/Components.jsx";
+import {UserProvider} from "./components/Context/loginContext.js"; 
 
 var hist = createBrowserHistory();
 
-function App(){
+function App() {
 
   return (
-    <Router history={hist}>
-    <Switch>
-      <Route path="/job-postings" component={JobPostings} />
-      <Route path="/client-jobs" component= {ClientComponents} />
-      <Route path="/profile-page" component={ProfilePage} />
-      <Route path="/login-page" component={LoginPage} />
-      <Route path="/signup-page" component={SignUpPage} />
-      <Route path="/dashboard" component={Dashboard} />
-      <Route path="/" component={Components} />
-    </Switch>
-  </Router>
+    <UserProvider>
+      <Router history={hist}>
+        <Switch>
+          <Route path="/job-postings" component={JobPostings} />
+          <Route path="/client-jobs" component={ClientComponents} />
+          <Route path="/profile-page/:name" component={ProfilePage} />
+          <Route path="/login-page" component={LoginPage} />
+          <Route path="/signup-page" component={SignUpPage} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/" component={Components} />
+        </Switch>
+      </Router>
+    </UserProvider>
+
 
   )
 

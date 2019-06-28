@@ -13,6 +13,26 @@ import GridItem from "components/Grid/GridItem.jsx";
 import productStyle from "assets/jss/material-kit-react/views/landingPageSections/productStyle.jsx";
 
 class ProductSection extends React.Component {
+
+  state = {
+    jobs: []
+
+  }
+
+  componentDidMount() {
+    this.loadJobs();
+  }
+
+  loadJobs = () => {
+    API.getJobs()
+      .then(res =>
+        this.setState({ jobs: res.data }),
+        
+       
+      )
+      .catch(err => console.log(err));
+  };
+
   render() {
     const { classes } = this.props;
     return (

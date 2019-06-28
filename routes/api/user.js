@@ -60,7 +60,17 @@ router.post("/register", (req, res) => {
 
 
 router.post("/login", localStrategy, function (req, res) {
-    res.json({ token: tokenizer(req.user) });
+    //res.json({ token: tokenizer(req.user) });
+    const email = req.body.email;
+
+    User.findOne({email}, "name").then(user => {
+
+        res.json({
+            user, 
+            token: tokenizer(req.user) 
+        })
+            
+    })
 });
 
 // @route POST api/users/login

@@ -20,77 +20,100 @@ import Button from "components/CustomButtons/Button.jsx";
 
 import headerLinksStyle from "assets/jss/material-kit-react/components/headerLinksStyle.jsx";
 
+import { LoginContext } from "../Context/loginContext";
 
-function HeaderLinks({ ...props }) {
-  const { classes } = props;
 
-  const logOut = event => {
-    event.preventDefault()
-    window.localStorage.removeItem("user-token");
+class HeaderLinks extends React.Component {
+
+  state = {
+
+    redirect: false, 
+    name: ""
   }
 
-  return (
-    <List className={classes.list}>
+  
 
-      <ListItem className={classes.listItem}>
-        <Link to ="/job-postings">
-          <Button
-            color="transparent"
-            className={classes.navLink}
-          >
-            <ViewList className={classes.icons} />Project Postings
+
+  logout = (name) =>{
+    this.context.changeLoggedIn(); 
+    this.context.changeLoggedInUser(name); 
+    
+
+  }
+
+
+  //static contextType = LoginContext
+  render() {
+    //const { loggedIn} = this.context
+    const { classes } = this.props;
+    return (
+      <List className={classes.list}>
+
+        <ListItem className={classes.listItem}>
+          <Link to="/job-postings">
+            <Button
+
+              color="transparent"
+              className={classes.navLink}
+            >
+              <ViewList className={classes.icons} />Project Postings
         </Button>
-        </Link>
-      </ListItem>
+          </Link>
+        </ListItem>
 
-      <ListItem className={classes.listItem}>
-      <Link to="/client-jobs">
-        <Button
-          color="transparent"
-          className={classes.navLink}
-        >
-          <ViewList className={classes.icons} />Clients
+        <ListItem className={classes.listItem}>
+          <Link to="/client-jobs">
+            <Button
+              color="transparent"
+              className={classes.navLink}
+            >
+              <ViewList className={classes.icons} />Clients
         </Button>
-        </Link>
-      </ListItem>
-
-      <ListItem className={classes.listItem}>
-        <Link to="/profile-page">
-          <Button
-            color="transparent"
-            className={classes.navLink}
-          >
-            <Mood className={classes.icons} />Profile
+          </Link>
+        </ListItem>
+        {this.context.loggedIn && <ListItem className={classes.listItem}>
+          <Link to={"/profile-page/" + this.context.loggedInUser}>
+            <Button
+              color="transparent"
+              className={classes.navLink}
+            >
+              <Mood className={classes.icons} />Profile
           </Button>
-        </Link>
-      </ListItem>
+          </Link>
+        </ListItem>
+        }
+        {!this.context.loggedIn &&
+          <ListItem className={classes.listItem}>
+            <Link to="/login-page">
+              <Button
+                color="transparent"
+                target="_blank"
+                className={classes.navLink}
+              >
+                <PowerSettingsNew className={classes.icons} />Login
+              </Button>
+            </Link>
+          </ListItem>
+        }
+        {this.context.loggedIn && <ListItem className={classes.listItem}>
+          <Link to="/">
+            <Button
+              onClick={() => this.logout(this.state.name)}
+              color="transparent"
+              target="_blank"
+              className={classes.navLink}
+            >
+              <PowerSettingsNew className={classes.icons} />Logout
+            </Button>
+          </Link>
+        </ListItem>
+        }
 
-      <ListItem className={classes.listItem}>
-        <Link to="/login-page">
-          <Button
-            color="transparent"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <PowerSettingsNew className={classes.icons} />Login
-        </Button>
-        </Link>
-      </ListItem>
-      <ListItem className={classes.listItem}>
-        <Link to="/">
-          <Button
-            onClick={logOut}
-            color="transparent"
-            target="_blank"
-            className={classes.navLink}
-          >
-            <PowerSettingsNew className={classes.icons} />Logout
-        </Button>
-        </Link>
-      </ListItem>
-
-    </List>
-  );
+      </List>
+    );
+  }
 }
 
+
+HeaderLinks.contextType = LoginContext;
 export default withStyles(headerLinksStyle)(HeaderLinks);
