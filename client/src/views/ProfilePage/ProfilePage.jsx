@@ -17,7 +17,7 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 
 import Parallax from "components/Parallax/Parallax.jsx";
 
-import profile from "assets/img/faces/christian.jpg";
+import profile from "assets/img/howl.jpeg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
 import Modal from "../../components/Modal/jobModal.jsx"
 import API from "../../utils/API.js"
