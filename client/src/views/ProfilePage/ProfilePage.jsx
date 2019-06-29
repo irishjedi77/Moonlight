@@ -99,7 +99,7 @@ class ProfilePage extends React.Component {
                 <GridItem xs={12} sm={12} md={6}>
                   <div className={classes.profile}>
                     <div>
-                      <img src={profile} alt="..." className={imageClasses} />
+                      <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png" alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
                       <h3 className={classes.title}>{this.state.profile.name}</h3>
