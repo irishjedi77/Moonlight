@@ -131,7 +131,7 @@ class Dashboard extends React.Component {
                           <option value="https://i.imgur.com/NuwNf2F.jpg">Wolf Moon</option>
                           <option value="https://i.imgur.com/CSBTdCX.jpg">Blue Moon</option>
                           <option value="https://i.imgur.com/1d1wFqf.jpg">Grassy Moon</option>
-                          <option value="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png">Full Yoda</option>
+                          <option value="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png">Yoda</option>
                         </select>
                       </div>
 
