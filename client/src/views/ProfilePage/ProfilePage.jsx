@@ -21,7 +21,7 @@ import { Link } from "react-router-dom";
 
 import Parallax from "components/Parallax/Parallax.jsx";
 
-import profile from "assets/img/faces/christian.jpg";
+import profile from "assets/img/moongrass.jpg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
 import Modal from "../../components/Modal/jobModal.jsx"
 import API from "../../utils/API.js"
@@ -49,9 +49,10 @@ class ProfilePage extends React.Component {
   loadProfile = () => {
     console.log("params: ", this.props.match.params.name)
     API.getUserInfo(this.props.match.params.name)
-      .then(res =>
-        this.setState({ profile: res.data[0] }),
-      )
+      .then(res =>{
+        this.setState({ profile: res.data[0] })
+        console.log("profile res:", res)
+      })
       .catch(err => console.log(err));
   };
 
@@ -68,6 +69,7 @@ class ProfilePage extends React.Component {
 
   render() {
     //console.log("jobs:", this.state.jobs)
+    console.log("profile:", this.state.profile)
     const { classes, ...rest } = this.props;
     const imageClasses = classNames(
       classes.imgRaised,
@@ -99,7 +101,7 @@ class ProfilePage extends React.Component {
                 <GridItem xs={12} sm={12} md={6}>
                   <div className={classes.profile}>
                     <div>
-                      <img src="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png" alt="..." className={imageClasses} />
+                      <img src={this.state.profile.avatar} alt="..." className={imageClasses} />
                     </div>
                     <div className={classes.name}>
                       <h3 className={classes.title}>{this.state.profile.name}</h3>

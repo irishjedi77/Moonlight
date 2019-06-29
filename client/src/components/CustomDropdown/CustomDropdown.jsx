@@ -174,7 +174,7 @@ class CustomDropdown extends React.Component {
 
 CustomDropdown.defaultProps = {
   caret: true,
-  hoverColor: "primary"
+  hoverColor: "info"
 };
 
 CustomDropdown.propTypes = {
