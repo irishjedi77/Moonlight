@@ -7,4 +7,8 @@ router.route("/")
   .post(jwtStrategy, jobsController.create)
   .get(jobsController.findAll)
 
-  module.exports = router;
+
+router
+  .route("/:name")
+  .get(jwtStrategy, jobsController.findJobByName)
+module.exports = router;

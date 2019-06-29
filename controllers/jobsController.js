@@ -23,4 +23,17 @@ module.exports = {
         res.status(422).json(err)
       });
   },
+  findJobByName: function(req, res){
+    console.log("req.params.name", req.user.id)
+    db.Job
+      .find({user: req.user.id})
+      .then(dbModel =>{
+        console.log("dbModel", dbModel)
+        res.json(dbModel)})
+      .catch(err => {
+        console.log(err);
+        res.status(422).json(err)
+      });
+
+  }
 };

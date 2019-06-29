@@ -1,8 +1,9 @@
 import React from "react";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
+import { Link } from "react-router-dom";
 
-import PropTypes from "prop-types"; 
+import PropTypes from "prop-types";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 
@@ -20,7 +21,7 @@ import productStyle from "assets/jss/material-kit-react/views/landingPageSection
 
 class ProductSection extends React.Component {
   state = {
-    jobs: []
+    jobs: {}
 
   }
 
@@ -32,13 +33,14 @@ class ProductSection extends React.Component {
     API.getJobs()
       .then(res =>
         this.setState({ jobs: res.data }),
-        
-       
+
+
       )
       .catch(err => console.log(err));
   };
 
   render() {
+    //console.log(this.state.jobs[0].user[0])
     const { classes } = this.props;
     return (
       <div className={classes.section}>
@@ -46,19 +48,27 @@ class ProductSection extends React.Component {
           <GridItem xs={12} sm={12} md={8}>
             <h2 className={classes.title}>Job Postings</h2>
             <div className="jobsHere">
-    
+
               {this.state.jobs.length ? (
                 <div>
-                  {this.state.jobs.map(job => (
-                    <GridContainer justify="center">
+                  {this.state.jobs.map((job, index) => (
+
+                    <GridContainer justify="center" key={index}>
                       <Card>
-                        <CardBody style={{backgroundColor: "#DCDCDC"}}>
+                        <CardBody style={{ backgroundColor: "#DCDCDC" }}>
                           <h4 className={classes.cardTitle}>{job.jobTitle}</h4>
+                          <br></br>
                           <h6 className={classes.cardSubtitle}>Project Description</h6>
                           <p>{job.jobDescription}</p>
                           <br></br>
                           <h6 className={classes.cardSubtitle}>Project Compensation</h6>
                           <p>{job.jobCompensation}</p>
+                          <br></br>
+
+                          <h6 className={classes.cardSubtitle}>Created by:</h6>
+                          <Link to={"/profile-page/" + job.user[0].name}>
+                            <p>{job.user[0].name}</p>
+                          </Link>
 
                         </CardBody>
                       </Card>
@@ -66,7 +76,7 @@ class ProductSection extends React.Component {
 
                   ))}
                 </div>
-                
+
               ) : (
                   <h3>No Results to Display</h3>
                 )}
@@ -80,7 +90,9 @@ class ProductSection extends React.Component {
 }
 
 ProductSection.propTypes = {
-    classes: PropTypes.object
+  classes: PropTypes.object
 }
 
 export default withStyles(productStyle)(ProductSection);
+
+

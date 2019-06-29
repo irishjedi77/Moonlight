@@ -3,7 +3,7 @@ import { LoginContext } from "../components/Context/loginContext.js";
 
 const context = LoginContext
 export default {
-  
+
   saveJob: (data) => {
     return axios.post("/api/jobs", data, {
       headers: {
@@ -14,6 +14,13 @@ export default {
   },
   getJobs: () => {
     return axios.get("/api/jobs");
+  },
+  getJobsByName: (name, token) => {
+    return axios.get("/api/jobs/" + name, {
+      headers: {
+        authorization: token
+      }
+    })
   },
   userSignUp: (data) => {
     return axios.post("/api/user/register", data);
@@ -27,10 +34,10 @@ export default {
         authorization: data.token
       }
     });
-  }, 
+  },
   getUserInfo: (name) => {
     return axios.get("/api/update/" + name, {
-      
+
     })
   }
 };
