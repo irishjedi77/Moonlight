@@ -69,7 +69,7 @@ class LoginPage extends React.Component {
     //console.log(user);
     API.userLogin(user)
       .then(({ data }) => {
-        //window.localStorage.setItem("user-token", data.token);
+        
         this.setState({
            name: data.user.name, 
            token: data.token
