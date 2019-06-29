@@ -49,13 +49,7 @@ app.use(routes);
 
 let MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/moonlight";
 
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => console.log("MongoDB successfully connected"))
-//   .catch(err => console.log(err));
+
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 

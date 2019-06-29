@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect} from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -25,7 +25,7 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/keyboard.jpg";
 import API from "../../../utils/API"
-import {LoginContext} from "../../../components/Context/loginContext.js"
+import { LoginContext } from "../../../components/Context/loginContext.js";
 
 class LoginPage extends React.Component {
   state = {
@@ -72,13 +72,13 @@ class LoginPage extends React.Component {
 
 
     API.userSignUp(this.state)
-      .then(res => {
-        console.log("info from signUp", res)
-        this.context.changeToken(res.data.token)
-
-      })
+      .then(
+        res => {
+          console.log("info from signUp", res)
+          this.context.changeToken(res.data.token)
+        })
       .catch(err => console.log(err));
-      this.setRedirect();
+    this.setRedirect();
 
   };
 
@@ -190,14 +190,14 @@ class LoginPage extends React.Component {
                           }}
                         />
                         <CardFooter className={classes.cardFooter}>
-                        <div>{this.renderRedirect()}
-                        <Button
-                          simple color="info" size="lg"
-                          type="submit"
-                          onClick={this.onSubmit}>
-                          Submit
+                          <div>{this.renderRedirect()}
+                            <Button
+                              simple color="info" size="lg"
+                              type="submit"
+                              onClick={this.onSubmit}>
+                              Submit
                         </Button>
-                        </div>
+                          </div>
                         </CardFooter>
                       </form>
                     </CardBody>

@@ -25,7 +25,7 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/computer.jpg";
 //API
 import API from "../../../utils/API"
-import {LoginContext} from "../../../components/Context/loginContext.js"
+import { LoginContext } from "../../../components/Context/loginContext.js";
 
 class Dashboard extends React.Component {
 
@@ -35,8 +35,8 @@ class Dashboard extends React.Component {
     name: "",
     phone: "",
     description: "",
-    redirect: false, 
-    name: "", 
+    redirect: false,
+    name: "",
     token: ""
   }
 
@@ -47,7 +47,7 @@ class Dashboard extends React.Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to={'/profile-page/' +  this.context.loggedInUser}/>
+      return <Redirect to={'/profile-page/' + this.context.loggedInUser} />
     }
   }
 
@@ -66,13 +66,13 @@ class Dashboard extends React.Component {
       avatar: this.state.avatar,
       name: this.state.name,
       phone: this.state.phone,
-      description: this.state.description, 
+      description: this.state.description,
       token: this.context.authToken
     };
-    console.log(userInfo);
-    
+    //console.log("Da User infroL ", userInfo);
+    // this.setRedirect()
 
-    API.userUpdate({userInfo})
+    API.userUpdate(userInfo) 
       .then((res) => {
         console.log("update response", res)
         this.context.changeLoggedInUser(res.data.name)
@@ -127,7 +127,7 @@ class Dashboard extends React.Component {
 
                       <h5>Choose Your Avatar</h5>
                       <div className="form-group">
-                        <select name="avatar" style={{ marginLeft: "50px", width: "200px", color: "#00bcd4", fontSize: "11pt" }} value={this.state.avatar} onChange={this.handleInputChange}>
+                        <select name="avatar" style={{ marginLeft: "50px", width: "200px", color: "#00bcd4", fontSize: "11pt" }} value={this.state.avatar} onChange={this.handleInputChange.bind(this)}>
                           <option value="https://i.imgur.com/NuwNf2F.jpg">Wolf Moon</option>
                           <option value="https://i.imgur.com/CSBTdCX.jpg">Blue Moon</option>
                           <option value="https://i.imgur.com/1d1wFqf.jpg">Grassy Moon</option>
@@ -197,17 +197,26 @@ class Dashboard extends React.Component {
                       {/* </form> */}
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
-                      <div>
-                        {this.renderRedirect()}
-                        <Button
-                          simple color="info" size="lg"
-                          className="submit"
-                          type="submit"
-                          onClick={this.onSubmit}
-                        >
-                          Submit
-                    </Button>
-                      </div>
+                      <LoginContext.Consumer>
+
+                        {data => {
+                          return (
+
+                            <div>
+                              {this.renderRedirect()}
+                              <Button
+                                simple color="info" size="lg"
+                                className="submit"
+                                type="submit"
+                                onClick={e => this.onSubmit(e, data)}
+                              >
+                                Submit
+                                </Button>
+                            </div>
+                          )
+                        }}
+
+                      </LoginContext.Consumer>
                     </CardFooter>
                   </form>
                 </Card>
