@@ -25,6 +25,7 @@ import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 
 import image from "assets/img/keyboard.jpg";
 import API from "../../../utils/API"
+import {LoginContext} from "../../../components/Context/loginContext.js"
 
 class LoginPage extends React.Component {
   state = {
@@ -35,6 +36,7 @@ class LoginPage extends React.Component {
     password2: "",
     phone: "",
     description: "",
+    avatar: "", 
     errors: {},
     redirect: false
   }
@@ -70,7 +72,11 @@ class LoginPage extends React.Component {
 
 
     API.userSignUp(this.state)
-      .then(res => console.log(res))
+      .then(res => {
+        console.log("info from signUp", res)
+        this.context.changeToken(res.data.token)
+
+      })
       .catch(err => console.log(err));
       this.setRedirect();
 
@@ -207,4 +213,5 @@ class LoginPage extends React.Component {
   }
 }
 
+LoginPage.contextType = LoginContext
 export default withStyles(loginPageStyle)(LoginPage);

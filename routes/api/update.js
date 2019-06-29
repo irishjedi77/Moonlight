@@ -4,7 +4,7 @@ const userController = require("../../controllers/userController");
 
 router
   .route("/")
-  .put(userController.update)
+  .put(jwtStrategy, userController.update)
 
 router
   .route("/:name")

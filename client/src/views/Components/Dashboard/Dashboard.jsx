@@ -19,20 +19,25 @@ import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 import TextField from '@material-ui/core/TextField';
+
 //styles
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
 import image from "assets/img/computer.jpg";
 //API
 import API from "../../../utils/API"
+import {LoginContext} from "../../../components/Context/loginContext.js"
 
 class Dashboard extends React.Component {
 
   state = {
     cardAnimaton: "cardHidden",
+    avatar: "",
     name: "",
     phone: "",
     description: "",
-    redirect: false
+    redirect: false, 
+    name: "", 
+    token: ""
   }
 
   setRedirect = () => {
@@ -42,7 +47,7 @@ class Dashboard extends React.Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      return <Redirect to='/profile-page' />
+      return <Redirect to={'/profile-page/' +  this.context.loggedInUser}/>
     }
   }
 
@@ -57,23 +62,25 @@ class Dashboard extends React.Component {
   onSubmit = event => {
     event.preventDefault();
 
-    // const newUser = {
-    //   name: this.state.name,
-    //   phone: this.state.phone,
-    //   description: this.state.description
-    // };
-    // console.log(newUser);
-    this.setRedirect()
-
-    API.userUpdate({
-       
+    const userInfo = {
+      avatar: this.state.avatar,
       name: this.state.name,
       phone: this.state.phone,
-      description: this.state.description
+      description: this.state.description, 
+      token: this.context.authToken
+    };
+    console.log(userInfo);
     
-  })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+
+    API.userUpdate({userInfo})
+      .then((res) => {
+        console.log("update response", res)
+        this.context.changeLoggedInUser(res.data.name)
+        this.context.changeLoggedIn()
+        this.setRedirect()
+
+      })
+      .catch(err => console.log(err));
 
   };
 
@@ -117,7 +124,16 @@ class Dashboard extends React.Component {
                     </CardHeader>
                     <p className={classes.divider}></p>
                     <CardBody>
-                      {/* <form noValidate onSubmit={this.onSubmit}> */}
+
+                      <h5>Choose Your Avatar</h5>
+                      <div className="form-group">
+                        <select name="avatar" style={{ marginLeft: "50px", width: "200px", color: "#00bcd4", fontSize: "11pt" }} value={this.state.avatar} onChange={this.handleInputChange}>
+                          <option value="https://i.imgur.com/NuwNf2F.jpg">Wolf Moon</option>
+                          <option value="https://i.imgur.com/CSBTdCX.jpg">Blue Moon</option>
+                          <option value="https://i.imgur.com/1d1wFqf.jpg">Grassy Moon</option>
+                        </select>
+                      </div>
+
                       <CustomInput
                         value={this.state.email}
                         onChange={this.handleInputChange}
@@ -158,7 +174,7 @@ class Dashboard extends React.Component {
                           )
                         }}
                       />
-                      <TextField
+                      <TextField style={{ color: "#00bcd4", width: "200px" }}
                         value={this.state.description}
                         onChange={this.handleInputChange}
                         id="outlined-multiline-static"
@@ -182,7 +198,7 @@ class Dashboard extends React.Component {
                     </CardBody>
                     <CardFooter className={classes.cardFooter}>
                       <div>
-                      {this.renderRedirect()}
+                        {this.renderRedirect()}
                         <Button
                           simple color="info" size="lg"
                           className="submit"
@@ -205,4 +221,5 @@ class Dashboard extends React.Component {
   }
 }
 
+Dashboard.contextType = LoginContext
 export default withStyles(loginPageStyle)(Dashboard);
