@@ -13,6 +13,7 @@ import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import { Link } from "react-router-dom";
+import Button from "components/CustomButtons/Button.jsx";
 
 
 import Parallax from "components/Parallax/Parallax.jsx";
