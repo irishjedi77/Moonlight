@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 
 
 // core components
@@ -70,7 +71,6 @@ class ProductSection extends React.Component {
                           <Link to={"/profile-page/" + job.user[0]._id}>
                             <p>{job.user[0].name}</p>
                           </Link>
-                          <Modal />
 
                         </CardBody>
                       </Card>
