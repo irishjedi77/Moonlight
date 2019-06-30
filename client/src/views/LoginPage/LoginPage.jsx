@@ -35,7 +35,7 @@ class LoginPage extends React.Component {
     password: "",
     errors: {},
     redirect: false,
-    name: "", 
+    _id: "", 
     token: ""
   }
 
@@ -66,22 +66,24 @@ class LoginPage extends React.Component {
       email: this.state.email,
       password: this.state.password
     };
-    //console.log(user);
+    
     API.userLogin(user)
       .then(({ data }) => {
         
         this.setState({
-           name: data.user.name, 
+           _id: data.user._id, 
            token: data.token
          })
-        console.log(data)
+        
+        console.log("data is", data.user._id)
         
       })
       .then(() =>{
-        this.context.changeLoggedInUser(this.state.name)
+        this.context.changeLoggedInUser(this.state._id)
         this.context.changeToken(this.state.token)
         this.context.changeLoggedIn()
         this.setRedirect()
+        
         
       })
       .catch(err => console.log(err));
@@ -103,6 +105,7 @@ class LoginPage extends React.Component {
   //static contextType = LoginContext
   render() {
     //const {loggedInUser, changeLoggedInUser} = this.context
+    //console.log("this.state.")
 
     const { classes, ...rest } = this.props;
     return (

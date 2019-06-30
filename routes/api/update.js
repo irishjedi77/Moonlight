@@ -7,6 +7,6 @@ router
   .put(jwtStrategy, userController.update)
 
 router
-  .route("/:name")
+  .route("/:_id")
   .get(userController.findProfileByName)
 module.exports = router;

@@ -35,8 +35,8 @@ export default {
       }
     });
   },
-  getUserInfo: (name) => {
-    return axios.get("/api/update/" + name, {
+  getUserInfo: (_id) => {
+    return axios.get("/api/update/" + _id, {
 
     })
   }

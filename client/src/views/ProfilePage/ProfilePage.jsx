@@ -47,17 +47,17 @@ class ProfilePage extends React.Component {
   }
 
   loadProfile = () => {
-    console.log("params: ", this.props.match.params.name)
-    API.getUserInfo(this.props.match.params.name)
+    console.log("params: ", this.props.match.params._id)
+    API.getUserInfo(this.props.match.params._id)
       .then(res =>{
         this.setState({ profile: res.data[0] })
-        console.log("profile res:", res)
+        //console.log("profile res:", res)
       })
       .catch(err => console.log(err));
   };
 
   loadJobs = () => {
-    API.getJobsByName(this.props.match.params.name, this.context.authToken)
+    API.getJobsByName(this.props.match.params._id, this.context.authToken)
       .then(res =>
         //this.setState({ jobs: res.data }),
         console.log("res", res)
@@ -68,8 +68,8 @@ class ProfilePage extends React.Component {
 
 
   render() {
-    //console.log("jobs:", this.state.jobs)
-    console.log("profile:", this.state.profile)
+    console.log("jobs:", this.state.jobs)
+    //console.log("profile:", this.state.profile)
     const { classes, ...rest } = this.props;
     const imageClasses = classNames(
       classes.imgRaised,
