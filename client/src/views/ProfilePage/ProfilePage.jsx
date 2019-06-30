@@ -58,10 +58,10 @@ class ProfilePage extends React.Component {
 
   loadJobs = () => {
     API.getJobsByName(this.props.match.params._id, this.context.authToken)
-      .then(res =>
-        //this.setState({ jobs: res.data }),
+      .then(res =>{
+        this.setState({ jobs: res.data })
         console.log("res", res)
-      )
+      })
       .catch(err => console.log(err));
   };
 
@@ -172,11 +172,6 @@ class ProfilePage extends React.Component {
                                   <p>{job.jobCompensation}</p>
                                   <br></br>
 
-                                  <h6 className={classes.cardSubtitle}>Created by:</h6>
-                                  {/* <Link to={"/profile-page/" + job.user[0].name}>
-                                    <p>{job.user[0].name}</p>
-                                  </Link> */}
-
                                 </CardBody>
                               </Card>
                             </GridContainer>
@@ -185,7 +180,7 @@ class ProfilePage extends React.Component {
                         </div>
 
                       ) : (
-                          <h3>No Results to Display</h3>
+                          <h3>This Client has not posted any jobs yet!</h3>
                         )}
                     </div>
 
@@ -204,7 +199,7 @@ class ProfilePage extends React.Component {
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.description}>
-                  {this.props.match.params.name === this.context.loggedInUser && <Modal
+                  {this.props.match.params._id === this.context.loggedInUser && <Modal
 
                   />}
                   <br></br>

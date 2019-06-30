@@ -24,9 +24,10 @@ module.exports = {
       });
   },
   findJobByName: function(req, res){
-    console.log("req.params.name", req.params.name)
+    console.log("req.user.id", req.user.id)
+    console.log("req.params._id", req.params._id)
     db.Job
-      .find({"user.name": "req.params.name"})
+      .find({user: req.params._id})
       .then(dbModel =>{
         console.log("dbModel", dbModel)
         res.json(dbModel)})

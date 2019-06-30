@@ -9,6 +9,6 @@ router.route("/")
 
 
 router
-  .route("/:name")
+  .route("/:_id")
   .get(jwtStrategy, jobsController.findJobByName)
 module.exports = router;
