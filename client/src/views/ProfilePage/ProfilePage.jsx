@@ -139,7 +139,7 @@ class ProfilePage extends React.Component {
                   </div>
 
                   <h6 className={classes.title}>Email:</h6>
-                  <p>{this.state.profile.email}</p>
+                  <p><a href={"mailto:" + this.state.profile.email}>{this.state.profile.email}</a></p>
                   <h6 className={classes.title}>Phone:</h6>
                   <p>{this.state.profile.phone}</p>
 
