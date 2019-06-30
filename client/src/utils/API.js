@@ -1,7 +1,7 @@
 import axios from "axios";
 import { LoginContext } from "../components/Context/loginContext.js";
 
-const context = LoginContext
+
 export default {
 
   saveJob: (data) => {
@@ -35,10 +35,17 @@ export default {
       }
     });
   },
-  getUserInfo: (name) => {
-    return axios.get("/api/update/" + name, {
+  getUserInfo: (_id) => {
+    return axios.get("/api/update/" + _id, {
 
     })
-  }
+  }, 
+  deleteJob: (_id, token) => {
+    return axios.delete("/api/jobs/" + _id, {
+      headers: {
+        authorization: token
+      }
+    })
+  },
 };
 

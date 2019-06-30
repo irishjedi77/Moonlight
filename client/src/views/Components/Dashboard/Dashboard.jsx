@@ -35,7 +35,7 @@ class Dashboard extends React.Component {
     phone: "",
     description: "",
     redirect: false,
-    name: "",
+    _id: "",
     token: ""
   }
 
@@ -74,7 +74,7 @@ class Dashboard extends React.Component {
     API.userUpdate(userInfo) 
       .then((res) => {
         console.log("update response", res)
-        this.context.changeLoggedInUser(res.data.name)
+        this.context.changeLoggedInUser(res.data._id)
         this.context.changeLoggedIn()
         this.setRedirect()
 

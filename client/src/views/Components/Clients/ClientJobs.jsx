@@ -67,7 +67,7 @@ class ProductSection extends React.Component {
                           <br></br>
 
                           <h6 className={classes.cardSubtitle}>Created by:</h6>
-                          <Link to={"/profile-page/" + job.user[0].name}>
+                          <Link to={"/profile-page/" + job.user[0]._id}>
                             <p>{job.user[0].name}</p>
                           </Link>
                           <Modal />

@@ -24,9 +24,10 @@ module.exports = {
       });
   },
   findJobByName: function(req, res){
-    console.log("req.params.name", req.user.id)
+    //console.log("req.user.id", req.user.id)
+    //console.log("req.params._id", req.params._id)
     db.Job
-      .find({user: req.user.id})
+      .find({user: req.params._id})
       .then(dbModel =>{
         console.log("dbModel", dbModel)
         res.json(dbModel)})
@@ -35,5 +36,13 @@ module.exports = {
         res.status(422).json(err)
       });
 
+  }, 
+  removeJob: function(req, res) {
+    //console.log("req.params._id:", req.params._id)
+    db.Job
+      .findById({ _id: req.params._id })
+      .then(dbModel => dbModel.remove())
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   }
 };

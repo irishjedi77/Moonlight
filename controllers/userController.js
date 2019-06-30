@@ -9,7 +9,7 @@ module.exports = {
     },
     findProfileByName: function (req, res) {
         db.User
-            .find({name: req.params.name}, 'name email phone description avatar')
+            .find({_id: req.params._id}, 'name email phone description avatar')
             .then(user => res.json(user))
             .catch(err => res.status(422).json(err));
 
