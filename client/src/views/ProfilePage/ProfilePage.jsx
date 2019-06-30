@@ -60,15 +60,22 @@ class ProfilePage extends React.Component {
     API.getJobsByName(this.props.match.params._id, this.context.authToken)
       .then(res =>{
         this.setState({ jobs: res.data })
-        console.log("res", res)
+        //console.log("res", res)
       })
       .catch(err => console.log(err));
   };
 
+  delete = (id, token) => {
+    API.deleteJob(id, token)
+    .then(res => this.loadJobs())
+    .catch(err => console.log(err));
+
+  }
+
 
 
   render() {
-    console.log("jobs:", this.state.jobs)
+    //console.log("jobs:", this.state.jobs)
     //console.log("profile:", this.state.profile)
     const { classes, ...rest } = this.props;
     const imageClasses = classNames(
@@ -171,6 +178,13 @@ class ProfilePage extends React.Component {
                                   <h6 className={classes.cardSubtitle}>Project Compensation</h6>
                                   <p>{job.jobCompensation}</p>
                                   <br></br>
+                                  {this.props.match.params._id === this.context.loggedInUser && <Button
+                                  simple color="danger" size="lg"
+                                  type="submit"
+                                  onClick={() => this.delete(job._id, this.context.authToken)}
+                                >
+                                  Delete
+                                  </Button>}
 
                                 </CardBody>
                               </Card>
@@ -218,3 +232,4 @@ class ProfilePage extends React.Component {
 
 ProfilePage.contextType = LoginContext;
 export default withStyles(profilePageStyle)(ProfilePage);
+

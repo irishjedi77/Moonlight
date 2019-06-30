@@ -11,4 +11,5 @@ router.route("/")
 router
   .route("/:_id")
   .get(jwtStrategy, jobsController.findJobByName)
+  .delete(jwtStrategy, jobsController.removeJob)
 module.exports = router;
