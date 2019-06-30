@@ -18,6 +18,7 @@ import API from "../../../utils/API"
 
 
 import productStyle from "assets/jss/material-kit-react/views/landingPageSections/productStyle.jsx";
+import Modal from "../../../components/Modal/emailModal.jsx";
 
 class ProductSection extends React.Component {
   state = {
@@ -69,6 +70,7 @@ class ProductSection extends React.Component {
                           <Link to={"/profile-page/" + job.user[0].name}>
                             <p>{job.user[0].name}</p>
                           </Link>
+                          <Modal />
 
                         </CardBody>
                       </Card>
