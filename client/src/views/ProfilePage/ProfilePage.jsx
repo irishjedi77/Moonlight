@@ -47,29 +47,36 @@ class ProfilePage extends React.Component {
   }
 
   loadProfile = () => {
-    console.log("params: ", this.props.match.params.name)
-    API.getUserInfo(this.props.match.params.name)
+    console.log("params: ", this.props.match.params._id)
+    API.getUserInfo(this.props.match.params._id)
       .then(res =>{
         this.setState({ profile: res.data[0] })
-        console.log("profile res:", res)
+        //console.log("profile res:", res)
       })
       .catch(err => console.log(err));
   };
 
   loadJobs = () => {
-    API.getJobsByName(this.props.match.params.name, this.context.authToken)
-      .then(res =>
-        //this.setState({ jobs: res.data }),
-        console.log("res", res)
-      )
+    API.getJobsByName(this.props.match.params._id, this.context.authToken)
+      .then(res =>{
+        this.setState({ jobs: res.data })
+        //console.log("res", res)
+      })
       .catch(err => console.log(err));
   };
+
+  delete = (id, token) => {
+    API.deleteJob(id, token)
+    .then(res => this.loadJobs())
+    .catch(err => console.log(err));
+
+  }
 
 
 
   render() {
     //console.log("jobs:", this.state.jobs)
-    console.log("profile:", this.state.profile)
+    //console.log("profile:", this.state.profile)
     const { classes, ...rest } = this.props;
     const imageClasses = classNames(
       classes.imgRaised,
@@ -171,11 +178,13 @@ class ProfilePage extends React.Component {
                                   <h6 className={classes.cardSubtitle}>Project Compensation</h6>
                                   <p>{job.jobCompensation}</p>
                                   <br></br>
-
-                                  <h6 className={classes.cardSubtitle}>Created by:</h6>
-                                  {/* <Link to={"/profile-page/" + job.user[0].name}>
-                                    <p>{job.user[0].name}</p>
-                                  </Link> */}
+                                  {this.props.match.params._id === this.context.loggedInUser && <Button
+                                  simple color="danger" size="lg"
+                                  type="submit"
+                                  onClick={() => this.delete(job._id, this.context.authToken)}
+                                >
+                                  Delete
+                                  </Button>}
 
                                 </CardBody>
                               </Card>
@@ -185,7 +194,7 @@ class ProfilePage extends React.Component {
                         </div>
 
                       ) : (
-                          <h3>No Results to Display</h3>
+                          <h3>This Client has not posted any jobs yet!</h3>
                         )}
                     </div>
 
@@ -204,7 +213,7 @@ class ProfilePage extends React.Component {
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.description}>
-                  {this.props.match.params.name === this.context.loggedInUser && <Modal
+                  {this.props.match.params._id === this.context.loggedInUser && <Modal
 
                   />}
                   <br></br>
@@ -223,3 +232,4 @@ class ProfilePage extends React.Component {
 
 ProfilePage.contextType = LoginContext;
 export default withStyles(profilePageStyle)(ProfilePage);
+

@@ -22,7 +22,7 @@ function App() {
       <Router history={hist}>
         <Switch>
           <Route path="/client-jobs" component={ClientComponents} />
-          <Route path="/profile-page/:name" component={ProfilePage} />
+          <Route path="/profile-page/:_id" component={ProfilePage} />
           <Route path="/login-page" component={LoginPage} />
           <Route path="/signup-page" component={SignUpPage} />
           <Route path="/dashboard" component={Dashboard} />
