@@ -114,10 +114,10 @@ class ProfilePage extends React.Component {
                     </div>
                     <div className={classes.name}>
                       <h3 className={classes.title}>{this.state.profile.name}</h3>
-                      <NameEditModal
+                      {this.props.match.params._id === this.context.loggedInUser && <NameEditModal
 
 
-                      />
+                      />}
 
                     </div>
                   </div>
@@ -132,10 +132,10 @@ class ProfilePage extends React.Component {
 
                 </div>
                 <p>{this.state.profile.description}</p>
-                <DescriptionEditModal
+                {this.props.match.params._id === this.context.loggedInUser && <DescriptionEditModal
 
 
-                />
+                />}
               </div>
 
             </div>
@@ -156,15 +156,15 @@ class ProfilePage extends React.Component {
                   <h6 className={classes.title}>Phone:</h6>
                   <p>{this.state.profile.phone}</p>
 
-                  <PhoneEditModal
+                  {this.props.match.params._id === this.context.loggedInUser && <PhoneEditModal
 
 
-                  />
+                  />}
 
-                  <EmailEditModal
+                  {this.props.match.params._id === this.context.loggedInUser && <EmailEditModal
 
 
-                  />
+                  />}
 
                 </div>
               </GridItem>
@@ -189,9 +189,9 @@ class ProfilePage extends React.Component {
 
                             <GridContainer justify="center">
                               <Card>
-                                <CardBody style={{ backgroundColor: "#DCDCDC" }}>
-                                  <h4 className={classes.cardTitle}>{job.jobTitle}</h4>
-                                  <br></br>
+                                <CardBody style={{ backgroundColor: "#F5F5F5" }}>
+                                  <h3 className={classes.cardSubtitle}>{job.jobTitle}</h3>
+                                  <hr></hr>
                                   <h6 className={classes.cardSubtitle}>Project Description</h6>
                                   <p>{job.jobDescription}</p>
                                   <br></br>
