@@ -16,11 +16,13 @@ import { Input, TextArea, FormBtn } from "../Form";
 // import API from "../../utils/API"
 // import { LoginContext } from "../Context/loginContext.js";
 
-//mailgun
+// //mailgun
 
-var API_KEY = '8de8badf6f8ca34bf3e4ec2056675c19-2b778fc3-053b1212';
-var DOMAIN = 'sandboxdbd73862b8624196930987c397b11e27.mailgun.org';
-var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
+// const mailgun = require("mailgun-js");
+// const DOMAIN = process.env.REACT_APP_DOMAIN;
+// const mg = mailgun({apiKey: process.env.REACT_APP_API_KEY, domain: process.env.REACT_APP_DOMAIN});
+
+
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -28,13 +30,18 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
+// fetch('/api/v1/communicate/mail', {
+//   method: 'POST'
+// },
+
+
 
 class Modal extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-        title: "",
-        contact: "irishjedi77@mac.com",
+        title: "irishjedi77@me.com",
+        contact: "",
         subject: "",
         message: "",
         modal: false,
@@ -57,10 +64,9 @@ class Modal extends React.Component {
             subject: this.state.subject, 
             text: this.state.message
           };
-
-        mailgun.messages().send(data, (error, body) => {
-            console.log(body);
-          });
+        //   fetch('/api/v1/communicate/mail', {
+        //     method: 'POST'
+        //   })
 
     }
 

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { createBrowserHistory } from "history";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
+
 import "assets/scss/material-kit-react.scss?v=1.4.0";
 
 // pages for this product
