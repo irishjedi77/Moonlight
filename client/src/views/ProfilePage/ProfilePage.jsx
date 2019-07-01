@@ -16,11 +16,16 @@ import CardBody from "components/Card/CardBody.jsx";
 import { Link } from "react-router-dom";
 
 
+
 import Parallax from "components/Parallax/Parallax.jsx";
 
 import profile from "assets/img/moongrass.jpg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
-import Modal from "../../components/Modal/jobModal.jsx"
+import Modal from "../../components/Modal/jobModal.jsx";
+import NameEditModal from "../../components/Modal/nameEditModal";
+import DescriptionEditModal from "../../components/Modal/descriptionEditModal";
+import PhoneEditModal from "../../components/Modal/phoneEditModal";
+import EmailEditModal from "../../components/Modal/emailEditModal"
 import API from "../../utils/API.js"
 
 
@@ -46,7 +51,7 @@ class ProfilePage extends React.Component {
   loadProfile = () => {
     console.log("params: ", this.props.match.params._id)
     API.getUserInfo(this.props.match.params._id)
-      .then(res =>{
+      .then(res => {
         this.setState({ profile: res.data[0] })
         //console.log("profile res:", res)
       })
@@ -55,7 +60,7 @@ class ProfilePage extends React.Component {
 
   loadJobs = () => {
     API.getJobsByName(this.props.match.params._id, this.context.authToken)
-      .then(res =>{
+      .then(res => {
         this.setState({ jobs: res.data })
         //console.log("res", res)
       })
@@ -64,8 +69,8 @@ class ProfilePage extends React.Component {
 
   delete = (id, token) => {
     API.deleteJob(id, token)
-    .then(res => this.loadJobs())
-    .catch(err => console.log(err));
+      .then(res => this.loadJobs())
+      .catch(err => console.log(err));
 
   }
 
@@ -109,6 +114,10 @@ class ProfilePage extends React.Component {
                     </div>
                     <div className={classes.name}>
                       <h3 className={classes.title}>{this.state.profile.name}</h3>
+                      {this.props.match.params._id === this.context.loggedInUser && <NameEditModal
+
+
+                      />}
 
                     </div>
                   </div>
@@ -123,6 +132,10 @@ class ProfilePage extends React.Component {
 
                 </div>
                 <p>{this.state.profile.description}</p>
+                {this.props.match.params._id === this.context.loggedInUser && <DescriptionEditModal
+
+
+                />}
               </div>
 
             </div>
@@ -139,9 +152,19 @@ class ProfilePage extends React.Component {
                   </div>
 
                   <h6 className={classes.title}>Email:</h6>
-                  <p>{this.state.profile.email}</p>
+                  <p><a href={"mailto:" + this.state.profile.email}>{this.state.profile.email}</a></p>
                   <h6 className={classes.title}>Phone:</h6>
                   <p>{this.state.profile.phone}</p>
+
+                  {this.props.match.params._id === this.context.loggedInUser && <PhoneEditModal
+
+
+                  />}
+
+                  {this.props.match.params._id === this.context.loggedInUser && <EmailEditModal
+
+
+                  />}
 
                 </div>
               </GridItem>
@@ -166,9 +189,9 @@ class ProfilePage extends React.Component {
 
                             <GridContainer justify="center">
                               <Card>
-                                <CardBody style={{ backgroundColor: "#DCDCDC" }}>
-                                  <h4 className={classes.cardTitle}>{job.jobTitle}</h4>
-                                  <br></br>
+                                <CardBody style={{ backgroundColor: "#F5F5F5" }}>
+                                  <h3 className={classes.cardSubtitle}>{job.jobTitle}</h3>
+                                  <hr></hr>
                                   <h6 className={classes.cardSubtitle}>Project Description</h6>
                                   <p>{job.jobDescription}</p>
                                   <br></br>
@@ -176,11 +199,11 @@ class ProfilePage extends React.Component {
                                   <p>{job.jobCompensation}</p>
                                   <br></br>
                                   {this.props.match.params._id === this.context.loggedInUser && <Button
-                                  simple color="danger" size="lg"
-                                  type="submit"
-                                  onClick={() => this.delete(job._id, this.context.authToken)}
-                                >
-                                  Delete
+                                    simple color="danger" size="lg"
+                                    type="submit"
+                                    onClick={() => this.delete(job._id, this.context.authToken)}
+                                  >
+                                    Delete
                                   </Button>}
 
                                 </CardBody>

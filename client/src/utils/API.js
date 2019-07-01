@@ -47,5 +47,35 @@ export default {
       }
     })
   },
+  updateName: (data) => {
+    return axios.put("/api/update/name", data, {
+      headers: {
+        authorization: data.token
+      }
+    })
+  },
+  updateDescription: (data) => {
+    return axios.put("/api/update/description", data, {
+      headers: {
+        authorization: data.token
+      }
+    })
+  },
+  updatePhone: (data) => {
+    return axios.put("/api/update/phone", data, {
+      headers: {
+        authorization: data.token
+      }
+    })
+  },
+  updateEmail: (data) => {
+    return axios.put("/api/update/email", data, {
+      headers: {
+        authorization: data.token
+      }
+    })
+  },
+
+
 };
 
