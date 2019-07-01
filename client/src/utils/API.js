@@ -61,6 +61,13 @@ export default {
       }
     })
   },
+  updatePhone: (data) => {
+    return axios.put("/api/update/phone", data, {
+      headers: {
+        authorization: data.token
+      }
+    })
+  },
 
 };
 

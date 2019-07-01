@@ -14,6 +14,10 @@ router
   .route("/description")
   .put(jwtStrategy, userController.updateDescription)
 
+  router
+    .route("/phone")
+    .put(jwtStrategy, userController.updatePhone)
+
 router
   .route("/:_id")
   .get(userController.findProfileByName)

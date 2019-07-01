@@ -46,7 +46,7 @@ class Modal extends React.Component {
             token: this.context.authToken
         }
 
-        API.updateName(data)
+        API.updatePhone(data)
             .then(res => console.log(res))
             .catch(err => console.log(err));
 
