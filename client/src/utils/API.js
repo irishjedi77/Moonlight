@@ -68,6 +68,14 @@ export default {
       }
     })
   },
+  updateEmail: (data) => {
+    return axios.put("/api/update/email", data, {
+      headers: {
+        authorization: data.token
+      }
+    })
+  },
+
 
 };
 

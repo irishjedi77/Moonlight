@@ -24,7 +24,8 @@ import profile from "assets/img/moongrass.jpg";
 import Modal from "../../components/Modal/jobModal.jsx";
 import NameEditModal from "../../components/Modal/nameEditModal";
 import DescriptionEditModal from "../../components/Modal/descriptionEditModal";
-import PhoneEditModal from "../../components/Modal/phoneEditModal"
+import PhoneEditModal from "../../components/Modal/phoneEditModal";
+import EmailEditModal from "../../components/Modal/emailEditModal"
 import API from "../../utils/API.js"
 
 
@@ -132,7 +133,7 @@ class ProfilePage extends React.Component {
                 </div>
                 <p>{this.state.profile.description}</p>
                 <DescriptionEditModal
-                
+
 
                 />
               </div>
@@ -156,9 +157,14 @@ class ProfilePage extends React.Component {
                   <p>{this.state.profile.phone}</p>
 
                   <PhoneEditModal
-                
 
-                />
+
+                  />
+
+                  <EmailEditModal
+
+
+                  />
 
                 </div>
               </GridItem>

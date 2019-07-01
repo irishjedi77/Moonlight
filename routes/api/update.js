@@ -19,6 +19,10 @@ router
     .put(jwtStrategy, userController.updatePhone)
 
 router
+  .route("/email")
+  .put(jwtStrategy, userController.updateEmail)
+
+router
   .route("/:_id")
   .get(userController.findProfileByName)
 module.exports = router;
