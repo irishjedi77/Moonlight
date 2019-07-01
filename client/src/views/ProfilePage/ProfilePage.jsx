@@ -20,7 +20,8 @@ import Parallax from "components/Parallax/Parallax.jsx";
 
 import profile from "assets/img/moongrass.jpg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
-import Modal from "../../components/Modal/jobModal.jsx"
+import Modal from "../../components/Modal/jobModal.jsx"; 
+import NameEditModal from "../../components/Modal/nameEditModal"; 
 import API from "../../utils/API.js"
 
 
@@ -109,6 +110,10 @@ class ProfilePage extends React.Component {
                     </div>
                     <div className={classes.name}>
                       <h3 className={classes.title}>{this.state.profile.name}</h3>
+                      <NameEditModal
+                      
+                      
+                      />
 
                     </div>
                   </div>

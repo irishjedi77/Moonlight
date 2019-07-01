@@ -5,6 +5,10 @@ const userController = require("../../controllers/userController");
 router
   .route("/")
   .put(jwtStrategy, userController.update)
+  
+router
+  .route("/name")
+  .put(jwtStrategy, userController.updateName)
 
 router
   .route("/:_id")
