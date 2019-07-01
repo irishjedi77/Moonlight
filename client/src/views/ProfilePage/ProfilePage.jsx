@@ -24,6 +24,7 @@ import profile from "assets/img/moongrass.jpg";
 import Modal from "../../components/Modal/jobModal.jsx";
 import NameEditModal from "../../components/Modal/nameEditModal";
 import DescriptionEditModal from "../../components/Modal/descriptionEditModal";
+import PhoneEditModal from "../../components/Modal/phoneEditModal"
 import API from "../../utils/API.js"
 
 
@@ -153,6 +154,11 @@ class ProfilePage extends React.Component {
                   <p><a href={"mailto:" + this.state.profile.email}>{this.state.profile.email}</a></p>
                   <h6 className={classes.title}>Phone:</h6>
                   <p>{this.state.profile.phone}</p>
+
+                  <PhoneEditModal
+                
+
+                />
 
                 </div>
               </GridItem>
