@@ -16,11 +16,11 @@ import { Input, TextArea, FormBtn } from "../Form";
 // import API from "../../utils/API"
 // import { LoginContext } from "../Context/loginContext.js";
 
-//mailgun
+// //mailgun
 
-const mailgun = require("mailgun-js");
-const DOMAIN = process.env.REACT_APP_DOMAIN;
-const mg = mailgun({apiKey: process.env.REACT_APP_API_KEY, domain: process.env.REACT_APP_DOMAIN});
+// const mailgun = require("mailgun-js");
+// const DOMAIN = process.env.REACT_APP_DOMAIN;
+// const mg = mailgun({apiKey: process.env.REACT_APP_API_KEY, domain: process.env.REACT_APP_DOMAIN});
 
 
 
@@ -28,6 +28,11 @@ const mg = mailgun({apiKey: process.env.REACT_APP_API_KEY, domain: process.env.R
 const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="down" ref={ref} {...props} />;
 });
+
+
+// fetch('/api/v1/communicate/mail', {
+//   method: 'POST'
+// },
 
 
 
@@ -59,10 +64,9 @@ class Modal extends React.Component {
             subject: this.state.subject, 
             text: this.state.message
           };
-
-        mg.messages().send(data, (error, body) => {
-            console.log(body);
-          });
+        //   fetch('/api/v1/communicate/mail', {
+        //     method: 'POST'
+        //   })
 
     }
 

@@ -71,7 +71,6 @@ class ProductSection extends React.Component {
                           <Link to={"/profile-page/" + job.user[0]._id}>
                             <p>{job.user[0].name}</p>
                           </Link>
-
                         </CardBody>
                       </Card>
                     </GridContainer>
