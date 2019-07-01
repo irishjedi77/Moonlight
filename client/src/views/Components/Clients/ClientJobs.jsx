@@ -42,7 +42,7 @@ class ProductSection extends React.Component {
   };
 
   render() {
-    //console.log(this.state.jobs[0].user[0])
+    //console.log(this.state.jobs)
     const { classes } = this.props;
     return (
       <div className={classes.section}>
@@ -57,9 +57,9 @@ class ProductSection extends React.Component {
 
                     <GridContainer justify="center" key={index}>
                       <Card>
-                        <CardBody style={{ backgroundColor: "#DCDCDC" }}>
-                          <h4 className={classes.cardTitle}>{job.jobTitle}</h4>
-                          <br></br>
+                        <CardBody style={{ backgroundColor: "#F5F5F5" }}>
+                          <h3 className={classes.cardSubtitle}>{job.jobTitle}</h3>
+                          <hr></hr>
                           <h6 className={classes.cardSubtitle}>Project Description</h6>
                           <p>{job.jobDescription}</p>
                           <br></br>
@@ -71,6 +71,9 @@ class ProductSection extends React.Component {
                           <Link to={"/profile-page/" + job.user[0]._id}>
                             <p>{job.user[0].name}</p>
                           </Link>
+                          <hr></hr>
+                          <h6 className={classes.cardSubtitle}>Email If Interested:</h6>
+                          <p><a href={"mailto:" + job.user[0].email}>{job.user[0].email}</a></p>
                         </CardBody>
                       </Card>
                     </GridContainer>

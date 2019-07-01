@@ -21,8 +21,9 @@ import Parallax from "components/Parallax/Parallax.jsx";
 
 import profile from "assets/img/moongrass.jpg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
-import Modal from "../../components/Modal/jobModal.jsx"; 
-import NameEditModal from "../../components/Modal/nameEditModal"; 
+import Modal from "../../components/Modal/jobModal.jsx";
+import NameEditModal from "../../components/Modal/nameEditModal";
+import DescriptionEditModal from "../../components/Modal/descriptionEditModal";
 import API from "../../utils/API.js"
 
 
@@ -48,7 +49,7 @@ class ProfilePage extends React.Component {
   loadProfile = () => {
     console.log("params: ", this.props.match.params._id)
     API.getUserInfo(this.props.match.params._id)
-      .then(res =>{
+      .then(res => {
         this.setState({ profile: res.data[0] })
         //console.log("profile res:", res)
       })
@@ -57,7 +58,7 @@ class ProfilePage extends React.Component {
 
   loadJobs = () => {
     API.getJobsByName(this.props.match.params._id, this.context.authToken)
-      .then(res =>{
+      .then(res => {
         this.setState({ jobs: res.data })
         //console.log("res", res)
       })
@@ -66,8 +67,8 @@ class ProfilePage extends React.Component {
 
   delete = (id, token) => {
     API.deleteJob(id, token)
-    .then(res => this.loadJobs())
-    .catch(err => console.log(err));
+      .then(res => this.loadJobs())
+      .catch(err => console.log(err));
 
   }
 
@@ -112,8 +113,8 @@ class ProfilePage extends React.Component {
                     <div className={classes.name}>
                       <h3 className={classes.title}>{this.state.profile.name}</h3>
                       <NameEditModal
-                      
-                      
+
+
                       />
 
                     </div>
@@ -129,6 +130,10 @@ class ProfilePage extends React.Component {
 
                 </div>
                 <p>{this.state.profile.description}</p>
+                <DescriptionEditModal
+                
+
+                />
               </div>
 
             </div>
@@ -182,11 +187,11 @@ class ProfilePage extends React.Component {
                                   <p>{job.jobCompensation}</p>
                                   <br></br>
                                   {this.props.match.params._id === this.context.loggedInUser && <Button
-                                  simple color="danger" size="lg"
-                                  type="submit"
-                                  onClick={() => this.delete(job._id, this.context.authToken)}
-                                >
-                                  Delete
+                                    simple color="danger" size="lg"
+                                    type="submit"
+                                    onClick={() => this.delete(job._id, this.context.authToken)}
+                                  >
+                                    Delete
                                   </Button>}
 
                                 </CardBody>

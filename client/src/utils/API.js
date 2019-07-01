@@ -54,6 +54,13 @@ export default {
       }
     })
   },
+  updateDescription: (data) => {
+    return axios.put("/api/update/description", data, {
+      headers: {
+        authorization: data.token
+      }
+    })
+  },
 
 };
 

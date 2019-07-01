@@ -11,6 +11,10 @@ router
   .put(jwtStrategy, userController.updateName)
 
 router
+  .route("/description")
+  .put(jwtStrategy, userController.updateDescription)
+
+router
   .route("/:_id")
   .get(userController.findProfileByName)
 module.exports = router;
