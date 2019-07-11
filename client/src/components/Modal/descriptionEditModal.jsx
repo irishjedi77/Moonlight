@@ -31,6 +31,20 @@ class Modal extends React.Component {
 
     };
 
+    componentDidMount() {
+        this.changeDescription()
+    }
+
+    changeDescription = () => {
+       
+        window.setTimeout(() => {
+            this.state.description= this.props.profile.description
+            console.log("hello gov", this.props.profile.description)}, 500)
+
+    
+    }
+    
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -38,8 +52,8 @@ class Modal extends React.Component {
         });
     };
 
-    handleFormSubmit = event => {
-        event.preventDefault();
+    handleFormSubmit = () => {
+        //event.preventDefault();
 
         const data = {
             description: this.state.description, 
@@ -47,7 +61,11 @@ class Modal extends React.Component {
         }
 
         API.updateDescription(data)
-            .then(res => console.log(res))
+            .then((res) => {
+                console.log(this.state)
+                this.props.loadProfile()
+        
+            })
             .catch(err => console.log(err));
 
         
@@ -106,11 +124,16 @@ class Modal extends React.Component {
                                 value={this.state.description}
                                 onChange={this.handleInputChange}
                                 name="description"
-                                placeholder="Edit Description"
+                                //placeholder="Edit Description"
                             />
                             <Button
                                 color="info"
-                                onClick={this.handleFormSubmit}
+                                onClick={() => {
+                                    this.handleClose("modal")
+                                    this.handleFormSubmit()
+                                
+                                }}
+
                             >
                                 Change Description!
                             </Button>

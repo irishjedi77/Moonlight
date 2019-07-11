@@ -53,7 +53,7 @@ class ProfilePage extends React.Component {
     API.getUserInfo(this.props.match.params._id)
       .then(res => {
         this.setState({ profile: res.data[0] })
-        //console.log("profile res:", res)
+        console.log("profile res:", res)
       })
       .catch(err => console.log(err));
   };
@@ -133,7 +133,8 @@ class ProfilePage extends React.Component {
                 </div>
                 <p>{this.state.profile.description}</p>
                 {this.props.match.params._id === this.context.loggedInUser && <DescriptionEditModal
-
+                  loadProfile={this.loadProfile}
+                  profile={this.state.profile}
 
                 />}
               </div>

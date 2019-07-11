@@ -13,7 +13,8 @@ export function Input(props) {
 export function TextArea(props) {
   return (
     <div className="form-group">
-      <textarea className="form-control" rows="20" {...props} style={{width: "100%"}}/>
+      <textarea className="form-control" rows="20" {...props} style={{width: "100%"}} />
+       
     </div>
   );
 }
