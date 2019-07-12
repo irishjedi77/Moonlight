@@ -15,6 +15,10 @@ import modalStyle from "../../assets/jss/material-kit-react/modalStyle.jsx";
 import { Input, TextArea, FormBtn } from "../Form";
 import API from "../../utils/API"
 import { LoginContext } from "../Context/loginContext.js";
+import CustomInput from "components/CustomInput/CustomInput.jsx";
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Email from "@material-ui/icons/Email";
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -24,8 +28,12 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 class Modal extends React.Component {
-    
-        state = {
+
+    state = {
+        avatar: "",
+        name: "",
+        phone: "",
+        email: "", 
         description: "",
         modal: false,
 
@@ -36,14 +44,19 @@ class Modal extends React.Component {
     }
 
     changeDescription = () => {
-       
-        window.setTimeout(() => {
-            this.state.description= this.props.profile.description
-            console.log("hello gov", this.props.profile.description)}, 500)
 
-    
+        window.setTimeout(() => {
+            this.state.avatar = this.props.profile.avatar
+            this.state.name = this.props.profile.name
+            this.state.phone = this.props.profile.phone
+            this.state.email = this.props.profile.email
+            this.state.description = this.props.profile.description
+            console.log("hello gov", this.props.profile)
+        }, 500)
+
+
     }
-    
+
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -56,19 +69,23 @@ class Modal extends React.Component {
         //event.preventDefault();
 
         const data = {
-            description: this.state.description, 
+            avatar: this.state.avatar, 
+            name: this.state.name, 
+            phone: this.state.phone, 
+            email: this.state.email, 
+            description: this.state.description,
             token: this.context.authToken
         }
 
-        API.updateDescription(data)
+        API.updateProfile(data)
             .then((res) => {
-                console.log(this.state)
+                //console.log(this.state)
                 this.props.loadProfile()
-        
+
             })
             .catch(err => console.log(err));
 
-        
+
     }
 
     handleClickOpen(modal) {
@@ -89,7 +106,7 @@ class Modal extends React.Component {
                     color="info"
                     round
                     onClick={() => this.handleClickOpen("modal")}>
-                    Edit Description
+                    Edit Profile
         </Button>
                 <Dialog
                     classes={{
@@ -119,25 +136,117 @@ class Modal extends React.Component {
                     <DialogContent
                         id="modal-slide-description"
                         className={classes.modalBody}>
-                        <form>
-                        <TextArea
+                        {/* <form> */}
+                        {/* <TextArea
                                 value={this.state.description}
                                 onChange={this.handleInputChange}
                                 name="description"
                                 //placeholder="Edit Description"
-                            />
+                            /> */}
+
+                        <div className="form-group">
+                            <select name="avatar" style={{ marginLeft: "50px", width: "200px", color: "#00bcd4", fontSize: "11pt" }} value={this.state.avatar} onChange={this.handleInputChange.bind(this)}>
+                                <option value="https://i.imgur.com/NuwNf2F.jpg">Wolf Moon</option>
+                                <option value="https://i.imgur.com/CSBTdCX.jpg">Blue Moon</option>
+                                <option value="https://i.imgur.com/1d1wFqf.jpg">Grassy Moon</option>
+                                <option value="https://upload.wikimedia.org/wikipedia/en/9/9b/Yoda_Empire_Strikes_Back.png">Full Yoda</option>
+                            </select>
+                        </div>
+
+                        <CustomInput
+                            value={this.state.name}
+                            onChange={this.handleInputChange}
+                            labelText="Name/Organization"
+                            id="name"
+                            name="name"
+                            formControlProps={{
+                                fullWidth: true
+                            }}
+                            inputProps={{
+                                type: "name",
+                                name: "name",
+                                onChange: this.handleInputChange,
+                                endadornment: (
+                                    <InputAdornment position="end">
+                                        <Email className={classes.inputIconsColor} />
+                                    </InputAdornment>
+                                )
+                            }}
+                        />
+                        <CustomInput
+                            value={this.state.email}
+                            onChange={this.handleInputChange}
+                            labelText="Email"
+                            id="email"
+                            name="email"
+                            formControlProps={{
+                                fullWidth: true
+                            }}
+                            inputProps={{
+                                type: "email",
+                                name: "email",
+                                onChange: this.handleInputChange,
+                                endadornment: (
+                                    <InputAdornment position="end">
+                                        <Email className={classes.inputIconsColor} />
+                                    </InputAdornment>
+                                )
+                            }}
+                        />
+                        <CustomInput
+                            value={this.state.phone}
+                            onChange={this.handleInputChange}
+                            labelText="Phone"
+                            id="phone"
+                            name="phone"
+                            formControlProps={{
+                                fullWidth: true
+                            }}
+                            inputProps={{
+                                type: "phone",
+                                name: "phone",
+                                onChange: this.handleInputChange,
+                                endadornment: (
+                                    <InputAdornment position="end">
+                                        <Email className={classes.inputIconsColor} />
+                                    </InputAdornment>
+                                )
+                            }}
+                        />
+                        <TextField style={{ color: "#00bcd4", width: "200px" }}
+                            value={this.state.description}
+                            onChange={this.handleInputChange}
+                            id="outlined-multiline-static"
+                            label="Organization Description"
+                            multiline
+                            rows="4"
+                            placeholder="Describe your organization here."
+                            className={classes.textField}
+                            margin="normal"
+                            variant="outlined"
+                            formControlProps={{
+                                fullWidth: true
+                            }}
+                            inputProps={{
+                                type: "description",
+                                name: "description",
+                                onChange: this.handleInputChange,
+                            }}
+                        />
+                        <div>
                             <Button
                                 color="info"
                                 onClick={() => {
                                     this.handleClose("modal")
                                     this.handleFormSubmit()
-                                
+
                                 }}
 
                             >
-                                Change Description!
+                                Update Profile
                             </Button>
-                        </form>
+                        </div>
+                        {/* </form> */}
                     </DialogContent>
                     <DialogActions
                         className={classes.modalFooter + " " + classes.modalFooterCenter}>
