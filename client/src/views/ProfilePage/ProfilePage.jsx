@@ -38,18 +38,27 @@ class ProfilePage extends React.Component {
 
   state = {
     profile: {},
-    jobs: {}
+    jobs: {}, 
 
   }
 
   componentDidMount() {
     this.loadJobs();
-    this.loadProfile();
-
+    this.loadProfile(); 
   }
 
+
+  // changer = () => {
+
+  //   if (this.props.match.params._id !== this.state.page){
+
+  //     this.loadProfile()
+  //   }
+
+  // }
   loadProfile = () => {
     console.log("params: ", this.props.match.params._id)
+    //this.state.page = this.props.match.params._id
     API.getUserInfo(this.props.match.params._id)
       .then(res => {
         this.setState({ profile: res.data[0] })
@@ -94,7 +103,10 @@ class ProfilePage extends React.Component {
         <Header
           color="transparent"
           brand="Moonlight"
-          rightLinks={<HeaderLinks />}
+          rightLinks={<HeaderLinks 
+            // loadProfile={this.loadProfile}
+            
+          />}
           fixed
           changeColorOnScroll={{
             height: 200,
