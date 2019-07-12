@@ -6,21 +6,21 @@ router
   .route("/")
   .put(jwtStrategy, userController.update)
   
-router
-  .route("/name")
-  .put(jwtStrategy, userController.updateName)
+// router
+//   .route("/name")
+//   .put(jwtStrategy, userController.updateName)
 
 router
-  .route("/description")
-  .put(jwtStrategy, userController.updateDescription)
+  .route("/profile")
+  .put(jwtStrategy, userController.updateProfile)
 
-  router
-    .route("/phone")
-    .put(jwtStrategy, userController.updatePhone)
+//   router
+//     .route("/phone")
+//     .put(jwtStrategy, userController.updatePhone)
 
-router
-  .route("/email")
-  .put(jwtStrategy, userController.updateEmail)
+// router
+//   .route("/email")
+//   .put(jwtStrategy, userController.updateEmail)
 
 router
   .route("/:_id")

@@ -14,34 +14,34 @@ module.exports = {
             .catch(err => res.status(422).json(err));
 
     }, 
-    updateName: function (req, res){
+    // updateName: function (req, res){
+    //     db.User
+    //         .findOneAndUpdate({_id: req.user.id }, req.body, {new: true})
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err)); 
+
+    // }, 
+    updateProfile: function (req, res){
         db.User
             .findOneAndUpdate({_id: req.user.id }, req.body, {new: true})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err)); 
 
     }, 
-    updateDescription: function (req, res){
-        db.User
-            .findOneAndUpdate({_id: req.user.id }, req.body, {new: true})
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err)); 
+    // updatePhone: function (req, res){
+    //     db.User
+    //         .findOneAndUpdate({_id: req.user.id }, req.body, {new: true})
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err)); 
 
-    }, 
-    updatePhone: function (req, res){
-        db.User
-            .findOneAndUpdate({_id: req.user.id }, req.body, {new: true})
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err)); 
+    // }, 
+    // updateEmail: function (req, res){
+    //     db.User
+    //         .findOneAndUpdate({_id: req.user.id }, req.body, {new: true})
+    //         .then(dbModel => res.json(dbModel))
+    //         .catch(err => res.status(422).json(err)); 
 
-    }, 
-    updateEmail: function (req, res){
-        db.User
-            .findOneAndUpdate({_id: req.user.id }, req.body, {new: true})
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err)); 
-
-    }, 
+    // }, 
 
 
 
