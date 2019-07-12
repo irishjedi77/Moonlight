@@ -19,13 +19,13 @@ import { Link } from "react-router-dom";
 
 import Parallax from "components/Parallax/Parallax.jsx";
 
-import profile from "assets/img/moongrass.jpg";
+// import profile from "assets/img/moongrass.jpg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
 import Modal from "../../components/Modal/jobModal.jsx";
-import NameEditModal from "../../components/Modal/nameEditModal";
-import DescriptionEditModal from "../../components/Modal/descriptionEditModal";
-import PhoneEditModal from "../../components/Modal/phoneEditModal";
-import EmailEditModal from "../../components/Modal/emailEditModal"
+// import NameEditModal from "../../components/Modal/nameEditModal";
+import ProfileEditModal from "../../components/Modal/descriptionEditModal";
+// import PhoneEditModal from "../../components/Modal/phoneEditModal";
+// import EmailEditModal from "../../components/Modal/emailEditModal"
 import API from "../../utils/API.js"
 
 
@@ -38,22 +38,31 @@ class ProfilePage extends React.Component {
 
   state = {
     profile: {},
-    jobs: {}
+    jobs: {}, 
 
   }
 
   componentDidMount() {
     this.loadJobs();
-    this.loadProfile();
-
+    this.loadProfile(); 
   }
 
+
+  // changer = () => {
+
+  //   if (this.props.match.params._id !== this.state.page){
+
+  //     this.loadProfile()
+  //   }
+
+  // }
   loadProfile = () => {
     console.log("params: ", this.props.match.params._id)
+    //this.state.page = this.props.match.params._id
     API.getUserInfo(this.props.match.params._id)
       .then(res => {
         this.setState({ profile: res.data[0] })
-        //console.log("profile res:", res)
+        console.log("profile res:", res)
       })
       .catch(err => console.log(err));
   };
@@ -94,7 +103,10 @@ class ProfilePage extends React.Component {
         <Header
           color="transparent"
           brand="Moonlight"
-          rightLinks={<HeaderLinks />}
+          rightLinks={<HeaderLinks 
+            // loadProfile={this.loadProfile}
+            
+          />}
           fixed
           changeColorOnScroll={{
             height: 200,
@@ -114,10 +126,10 @@ class ProfilePage extends React.Component {
                     </div>
                     <div className={classes.name}>
                       <h3 className={classes.title}>{this.state.profile.name}</h3>
-                      {this.props.match.params._id === this.context.loggedInUser && <NameEditModal
+                      {/* {this.props.match.params._id === this.context.loggedInUser && <NameEditModal
 
 
-                      />}
+                      />} */}
 
                     </div>
                   </div>
@@ -132,10 +144,11 @@ class ProfilePage extends React.Component {
 
                 </div>
                 <p>{this.state.profile.description}</p>
-                {this.props.match.params._id === this.context.loggedInUser && <DescriptionEditModal
+                {/* {this.props.match.params._id === this.context.loggedInUser && <DescriptionEditModal
+                  loadProfile={this.loadProfile}
+                  profile={this.state.profile}
 
-
-                />}
+                />} */}
               </div>
 
             </div>
@@ -156,15 +169,20 @@ class ProfilePage extends React.Component {
                   <h6 className={classes.title}>Phone:</h6>
                   <p>{this.state.profile.phone}</p>
 
-                  {this.props.match.params._id === this.context.loggedInUser && <PhoneEditModal
+                  {/* {this.props.match.params._id === this.context.loggedInUser && <PhoneEditModal
 
 
-                  />}
+                  />} */}
 
-                  {this.props.match.params._id === this.context.loggedInUser && <EmailEditModal
+                  {/* {this.props.match.params._id === this.context.loggedInUser && <EmailEditModal
 
 
-                  />}
+                  />} */}
+                  {this.props.match.params._id === this.context.loggedInUser && <ProfileEditModal
+                  loadProfile={this.loadProfile}
+                  profile={this.state.profile}
+
+                />}
 
                 </div>
               </GridItem>
