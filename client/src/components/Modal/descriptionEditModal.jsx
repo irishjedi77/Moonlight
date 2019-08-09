@@ -33,7 +33,7 @@ class Modal extends React.Component {
         avatar: "",
         name: "",
         phone: "",
-        email: "", 
+        email: "",
         description: "",
         modal: false,
 
@@ -69,10 +69,10 @@ class Modal extends React.Component {
         //event.preventDefault();
 
         const data = {
-            avatar: this.state.avatar, 
-            name: this.state.name, 
-            phone: this.state.phone, 
-            email: this.state.email, 
+            avatar: this.state.avatar,
+            name: this.state.name,
+            phone: this.state.phone,
+            email: this.state.email,
             description: this.state.description,
             token: this.context.authToken
         }

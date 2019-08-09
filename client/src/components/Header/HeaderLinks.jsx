@@ -66,6 +66,7 @@ class HeaderLinks extends React.Component {
             <Button
               color="transparent"
               className={classes.navLink}
+              onClick={this.props.loadProfile2}
             >
               <Mood className={classes.icons} />Profile
           </Button>

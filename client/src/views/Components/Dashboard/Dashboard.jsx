@@ -32,7 +32,7 @@ class Dashboard extends React.Component {
 
   state = {
     cardAnimaton: "cardHidden",
-    avatar: "",
+    avatar: "https://i.imgur.com/NuwNf2F.jpg",
     name: "",
     phone: "",
     description: "",
@@ -73,7 +73,7 @@ class Dashboard extends React.Component {
     //console.log("Da User infroL ", userInfo);
     // this.setRedirect()
 
-    API.userUpdate(userInfo) 
+    API.userUpdate(userInfo)
       .then((res) => {
         console.log("update response", res)
         this.context.changeLoggedInUser(res.data._id)
