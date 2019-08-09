@@ -62,11 +62,6 @@ class ProfilePage extends React.Component {
 
   }
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.profile._id !== this.state.profile._id) {
-  //     this.loadProfile()
-  //     this.loadJobs()
-  //   }
 
   // }
   loadProfile = () => {
