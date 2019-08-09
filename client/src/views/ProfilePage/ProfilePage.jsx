@@ -38,31 +38,45 @@ class ProfilePage extends React.Component {
 
   state = {
     profile: {},
-    jobs: {}, 
+    jobs: {},
 
   }
 
   componentDidMount() {
     this.loadJobs();
-    this.loadProfile(); 
+    this.loadProfile();
   }
 
 
-  // changer = () => {
+  loadProfile2 = () => {
 
-  //   if (this.props.match.params._id !== this.state.page){
 
+    API.getUserInfo(this.context.loggedInUser)
+      .then(res => {
+        this.setState({ profile: res.data[0] })
+        // console.log("profile res:", res)
+        // console.log("state:", this.state)
+        this.loadJobs()
+      })
+      .catch(err => console.log(err));
+
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (this.state.profile._id !== this.state.profile._id) {
   //     this.loadProfile()
+  //     this.loadJobs()
   //   }
 
   // }
   loadProfile = () => {
-    console.log("params: ", this.props.match.params._id)
+    console.log("hello!!")
     //this.state.page = this.props.match.params._id
     API.getUserInfo(this.props.match.params._id)
       .then(res => {
         this.setState({ profile: res.data[0] })
         console.log("profile res:", res)
+        console.log("state:", this.state)
       })
       .catch(err => console.log(err));
   };
@@ -103,9 +117,9 @@ class ProfilePage extends React.Component {
         <Header
           color="transparent"
           brand="Moonlight"
-          rightLinks={<HeaderLinks 
-            // loadProfile={this.loadProfile}
-            
+          rightLinks={<HeaderLinks
+            loadProfile2={this.loadProfile2}
+
           />}
           fixed
           changeColorOnScroll={{
@@ -179,10 +193,10 @@ class ProfilePage extends React.Component {
 
                   />} */}
                   {this.props.match.params._id === this.context.loggedInUser && <ProfileEditModal
-                  loadProfile={this.loadProfile}
-                  profile={this.state.profile}
+                    loadProfile={this.loadProfile}
+                    profile={this.state.profile}
 
-                />}
+                  />}
 
                 </div>
               </GridItem>
