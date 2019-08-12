@@ -13,7 +13,7 @@ import GridItem from "components/Grid/GridItem.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 
 
@@ -105,7 +105,7 @@ class ProfilePage extends React.Component {
     );
 
     //console.log("user info:", this.state.profile)
-    const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
+    //const navImageClasses = classNames(classes.imgRounded, classes.imgGallery);
     return (
       <div>
 

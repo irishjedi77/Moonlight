@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Card from "components/Card/Card.jsx";
 import CardBody from "components/Card/CardBody.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+//import Button from "components/CustomButtons/Button.jsx";
 
 
 // core components
@@ -19,7 +19,7 @@ import API from "../../../utils/API"
 
 
 import productStyle from "assets/jss/material-kit-react/views/landingPageSections/productStyle.jsx";
-import Modal from "../../../components/Modal/emailModal.jsx";
+//import Modal from "../../../components/Modal/emailModal.jsx";
 
 class ProductSection extends React.Component {
   state = {

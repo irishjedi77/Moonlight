@@ -12,7 +12,7 @@ import Close from "@material-ui/icons/Close";
 // core components
 import Button from "components/CustomButtons/Button.jsx";
 import modalStyle from "../../assets/jss/material-kit-react/modalStyle.jsx";
-import { Input, TextArea, FormBtn } from "../Form";
+//import { Input, TextArea, FormBtn } from "../Form";
 import API from "../../utils/API"
 import { LoginContext } from "../Context/loginContext.js";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
