@@ -18,16 +18,16 @@ export class UserProvider extends Component {
 
     changeLoggedInUser(user){
         this.setState({loggedInUser: user}) 
-        console.log("CONTEXT LOGGEDINUSER:", this.state.loggedInUser)
+        //console.log("CONTEXT LOGGEDINUSER:", this.state.loggedInUser)
     }
     changeToken(token){
         this.setState({authToken: token})
-        console.log("Auth Token: ", this.state.authToken)
+        //console.log("Auth Token: ", this.state.authToken)
     }
 
     changeLoggedIn(){
         this.setState({loggedIn: !this.state.loggedIn})
-        console.log("CONTEXT LOGGEDIN true or false?:", this.state.loggedIn)
+        //console.log("CONTEXT LOGGEDIN true or false?:", this.state.loggedIn)
     }
 
    

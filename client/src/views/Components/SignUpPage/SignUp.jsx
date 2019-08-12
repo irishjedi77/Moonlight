@@ -76,7 +76,7 @@ class LoginPage extends React.Component {
     API.userSignUp(this.state)
       .then(
         res => {
-          console.log("info from signUp", res)
+          //console.log("info from signUp", res)
           this.context.changeToken(res.data.token)
           this.setRedirect();
         })

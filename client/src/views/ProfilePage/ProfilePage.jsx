@@ -70,8 +70,8 @@ class ProfilePage extends React.Component {
     API.getUserInfo(this.props.match.params._id)
       .then(res => {
         this.setState({ profile: res.data[0] })
-        console.log("profile res:", res)
-        console.log("state:", this.state)
+        //console.log("profile res:", res)
+        //console.log("state:", this.state)
       })
       .catch(err => console.log(err));
   };

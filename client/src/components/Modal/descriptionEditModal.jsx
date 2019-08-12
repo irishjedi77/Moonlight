@@ -51,7 +51,7 @@ class Modal extends React.Component {
             this.state.phone = this.props.profile.phone
             this.state.email = this.props.profile.email
             this.state.description = this.props.profile.description
-            console.log("hello gov", this.props.profile)
+           // console.log("hello gov", this.props.profile)
         }, 500)
 
 

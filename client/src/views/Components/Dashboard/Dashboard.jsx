@@ -75,7 +75,7 @@ class Dashboard extends React.Component {
 
     API.userUpdate(userInfo)
       .then((res) => {
-        console.log("update response", res)
+        //console.log("update response", res)
         this.context.changeLoggedInUser(res.data._id)
         this.context.changeLoggedIn()
         this.setRedirect()
