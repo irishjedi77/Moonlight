@@ -63,14 +63,14 @@ router.post("/login", localStrategy, function (req, res) {
     //res.json({ token: tokenizer(req.user) });
     const email = req.body.email;
 
-    User.findOne({email}, "name").then(user => {
+    User.findOne({email}, "name").then( user => {
 
-        res.json({
-            user, 
-            token: tokenizer(req.user) 
-        })
-            
-    })
+            res.json({
+                user,
+                token: tokenizer(req.user)
+            })
+
+    }).catch((err) => { console.log(err) });
 });
 
 // @route POST api/users/login
@@ -102,26 +102,26 @@ router.post("/login", localStrategy, function (req, res) {
 //                 };
 //                 // Sign token
 //                 jwt.sign(
-//                   payload,
-//                   keys.secretOrKey,
-//                   {
-//                     expiresIn: 31556926 // 1 year in seconds
-//                   },
-//                   (err, token) => {
-//                     res.json({
-//                       success: true,
-//                       token: "Bearer " + token
-//                     });
-//                   }
+//                     payload,
+//                     keys.secretOrKey,
+//                     {
+//                         expiresIn: 31556926 // 1 year in seconds
+//                     },
+//                     (err, token) => {
+//                         res.json({
+//                             user,
+//                             token: tokenizer(req.user)
+//                         });
+//                     }
 //                 );
 //             }
 //             else {
-//               return res
-//                 .status(400)
-//                 .json({ passwordincorrect: "Password incorrect" });
+//                 return res
+//                     .status(400)
+//                     .json({ passwordincorrect: "Password incorrect" });
 //             }
 //         });
-//     });
+//     }).catch((err) => { console.log(err) });
 // });
 
 // router

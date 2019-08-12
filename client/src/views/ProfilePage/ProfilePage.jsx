@@ -21,7 +21,7 @@ import Parallax from "components/Parallax/Parallax.jsx";
 
 // import profile from "assets/img/moongrass.jpg";
 // import modalStyle from "assets/jss/material-kit-react/modalStyle.jsx";
-import Modal from "../../components/Modal/jobModal.jsx";
+import JobModal from "../../components/Modal/jobModal.jsx";
 // import NameEditModal from "../../components/Modal/nameEditModal";
 import ProfileEditModal from "../../components/Modal/descriptionEditModal";
 // import PhoneEditModal from "../../components/Modal/phoneEditModal";
@@ -65,7 +65,7 @@ class ProfilePage extends React.Component {
 
   // }
   loadProfile = () => {
-    console.log("hello!!")
+    //console.log("hello!!")
     //this.state.page = this.props.match.params._id
     API.getUserInfo(this.props.match.params._id)
       .then(res => {
@@ -260,9 +260,10 @@ class ProfilePage extends React.Component {
             <GridContainer justify="center">
               <GridItem xs={12} sm={12} md={6}>
                 <div className={classes.description}>
-                  {this.props.match.params._id === this.context.loggedInUser && <Modal
-
-                  />}
+                  {this.props.match.params._id === this.context.loggedInUser &&
+                    <JobModal
+                      loadJobs={this.loadJobs}
+                    />}
                   <br></br>
                 </div>
               </GridItem>

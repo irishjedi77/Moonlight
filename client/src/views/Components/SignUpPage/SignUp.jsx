@@ -19,6 +19,8 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
+import swal from 'sweetalert';
+
 
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
@@ -36,7 +38,7 @@ class LoginPage extends React.Component {
     password2: "",
     phone: "",
     description: "",
-    avatar: "", 
+    avatar: "",
     errors: {},
     redirect: false
   }
@@ -76,9 +78,21 @@ class LoginPage extends React.Component {
         res => {
           console.log("info from signUp", res)
           this.context.changeToken(res.data.token)
+          this.setRedirect();
         })
-      .catch(err => console.log(err));
-    this.setRedirect();
+      .catch(err => {
+
+        if (err.response.data.password) {
+          swal("Oops", err.response.data.password, "error")
+        } else if (err.response.data.password2) {
+          swal("Oops", err.response.data.password2, "error")
+        } else if (err.response.data.email) {
+          swal("Oops", err.response.data.email, "error")
+        } else {
+          swal("Oops", "An error occured, try again!", "error")
+        }
+
+      });
 
   };
 
