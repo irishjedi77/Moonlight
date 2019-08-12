@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
-const localStrategy = passport.authenticate("local", { session: false });
+const localStrategy = passport.authenticate("local", { session: false, });
 // const userController = require("../../controllers/userController");
 
 const tokenizer = user => {
@@ -34,7 +34,7 @@ router.post("/register", (req, res) => {
     }
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
-            return res.status(400).json({ email: "Email already exists" });
+            return res.status(400).json({ message: "Email already exists" });
         } else {
             const newUser = new User({
                 name: req.body.name,
