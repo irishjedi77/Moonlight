@@ -12,7 +12,7 @@ import Close from "@material-ui/icons/Close";
 // core components
 import Button from "components/CustomButtons/Button.jsx";
 import modalStyle from "../../assets/jss/material-kit-react/modalStyle.jsx";
-import { Input, TextArea, FormBtn } from "../Form";
+import { Input, TextArea} from "../Form";
 import API from "../../utils/API"
 import { LoginContext } from "../Context/loginContext.js";
 
@@ -24,16 +24,16 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 
 
 class Modal extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-        jobTitle: "",
-        jobDescription: "",
-        jobCompensation: "",
-        modal: false,
+            jobTitle: "",
+            jobDescription: "",
+            jobCompensation: "",
+            modal: false,
 
-    };
-}
+        };
+    }
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -42,7 +42,7 @@ class Modal extends React.Component {
     };
 
     handleFormSubmit = event => {
-        event.preventDefault();
+        //event.preventDefault();
 
         API.saveJob({
             jobTitle: this.state.jobTitle,
@@ -50,7 +50,10 @@ class Modal extends React.Component {
             jobCompensation: this.state.jobCompensation,
             token: this.context.authToken
         })
-            .then(res => console.log(res))
+            .then((res) => {
+                //console.log(res)
+                this.props.loadJobs()
+            })
             .catch(err => console.log(err));
 
     }
@@ -124,7 +127,10 @@ class Modal extends React.Component {
                             />
                             <Button
                                 color="info"
-                                onClick={this.handleFormSubmit}
+                                onClick={() => {
+                                    this.handleClose("modal")
+                                    this.handleFormSubmit()
+                                }}
                             >
                                 Submit Job
                             </Button>

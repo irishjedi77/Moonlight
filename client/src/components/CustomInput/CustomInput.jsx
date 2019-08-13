@@ -14,7 +14,7 @@ import customInputStyle from "assets/jss/material-kit-react/components/customInp
 function CustomInput({ ...props }) {
   const {
     value, 
-    onChange,
+    //onChange,
     classes,
     formControlProps,
     labelText,

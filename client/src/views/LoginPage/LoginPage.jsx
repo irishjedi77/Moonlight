@@ -20,6 +20,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
+import swal from 'sweetalert';
 
 import image from "assets/img/keyboard.jpg";
 import API from "../../utils/API";
@@ -68,13 +69,13 @@ class LoginPage extends React.Component {
     
     API.userLogin(user)
       .then(({ data }) => {
-        
+        //console.log("yo", data.user._id)
         this.setState({
            _id: data.user._id, 
            token: data.token
          })
         
-        console.log("data is", data.user._id)
+        //console.log("data is", data.user._id)
         
       })
       .then(() =>{
@@ -85,7 +86,9 @@ class LoginPage extends React.Component {
         
         
       })
-      .catch(err => console.log(err));
+      .catch((err) => {console.log(err)
+        swal( "Oops" ,  "You entered the wrong password or username!" ,  "error" )
+      });
 
   };
 

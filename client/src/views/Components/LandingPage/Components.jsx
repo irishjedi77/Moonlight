@@ -16,7 +16,7 @@ import Parallax from "components/Parallax/Parallax.jsx";
 // sections for this page
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
 import SectionAbout from "./Sections/SectionAbout.jsx"
-import WorksSection from "./Sections/WorksSection.jsx"
+//import WorksSection from "./Sections/WorksSection.jsx"
 
 
 

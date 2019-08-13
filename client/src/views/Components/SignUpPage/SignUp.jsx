@@ -1,12 +1,12 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
+//import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.jsx";
 import HeaderLinks from "components/Header/HeaderLinks.jsx";
@@ -19,6 +19,8 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 import CustomInput from "components/CustomInput/CustomInput.jsx";
+import swal from 'sweetalert';
+
 
 
 import loginPageStyle from "assets/jss/material-kit-react/views/loginPage.jsx";
@@ -36,7 +38,7 @@ class LoginPage extends React.Component {
     password2: "",
     phone: "",
     description: "",
-    avatar: "", 
+    avatar: "",
     errors: {},
     redirect: false
   }
@@ -74,11 +76,23 @@ class LoginPage extends React.Component {
     API.userSignUp(this.state)
       .then(
         res => {
-          console.log("info from signUp", res)
+          //console.log("info from signUp", res)
           this.context.changeToken(res.data.token)
+          this.setRedirect();
         })
-      .catch(err => console.log(err));
-    this.setRedirect();
+      .catch(err => {
+
+        if (err.response.data.password) {
+          swal("Oops", err.response.data.password, "error")
+        } else if (err.response.data.password2) {
+          swal("Oops", err.response.data.password2, "error")
+        } else if (err.response.data.email) {
+          swal("Oops", err.response.data.email, "error")
+        } else {
+          swal("Oops", "An error occured, try again!", "error")
+        }
+
+      });
 
   };
 
